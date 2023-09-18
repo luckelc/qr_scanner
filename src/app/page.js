@@ -1,27 +1,26 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-
 import { Html5QrcodeScanner } from 'html5-qrcode';
-
 import styles from './page.module.css';
-
 import questions from './questions.json'
 
 function App() {
 
-  console.log(questions.questions);
+  const handleQuestionClick = (event) => {
+    const clickedElement = event.target.id;
+    console.log('Clicked element:', clickedElement);
+  };
 
   var questionList = []
-
   questions.questions.forEach((e) => {
     questionList.push(
     <li key={e.id} className={styles.question}>
-      <div style={{backgroundColor: e.color.hex}}>
+      <div style={{backgroundColor: e.color.hex}} onClick={handleQuestionClick} id={'question' + e.id}>
         <h3>{e.question}</h3>
       </div>
     </li>)
   })
-  
+
   return (
 
     <div className={styles.app}>
@@ -38,14 +37,8 @@ function App() {
           <div className={styles.give_up}>GIVE UP</div>
         </div>
       </div>
-
     </div>
-
-
   );
-
 }
 
-
-
-export default App;   
+export default App;
