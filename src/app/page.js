@@ -1,14 +1,23 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, {useState} from 'react';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import styles from './page.module.css';
 import questions from './questions.json'
 
 function App() {
+  const [showElement, setShowElement] = useState(false);
+  var module = []
 
   const handleQuestionClick = (event) => {
     const clickedElement = event.target.id;
     console.log('Clicked element:', clickedElement);
+    module = []
+    module.push(
+      <div>b
+        <h2>Top tier</h2>
+      </div>
+    )
+    setShowElement(!showElement);
   };
 
   var questionList = []
@@ -21,10 +30,12 @@ function App() {
     </li>)
   })
 
+
   return (
 
     <div className={styles.app}>
-
+      {showElement? module  : "no"}
+      <div id="show-question"></div>
       <h1 className={styles.h1}>QR Scanning Code</h1>
 
       <ul>
