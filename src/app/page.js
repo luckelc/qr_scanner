@@ -6,18 +6,35 @@ import questions from './questions.json'
 
 function App() {
   const [showElement, setShowElement] = useState(false);
-  var module = []
+  const [questionInfo, setQuestionInfo] = useState('Test text');
 
-  const handleQuestionClick = (event) => {
-    const clickedElement = event.target.id;
-    console.log('Clicked element:', clickedElement);
-    module = []
-    module.push(
-      <div>b
-        <h2>Top tier</h2>
+  const goBack = (event) => {
+    setShowElement(false);
+  };
+
+  function moduleCode(questionName, questionImageUrl, questionDesc) {
+    return (
+      <div className={styles.module}>
+        <div>
+          <div className={styles.go_back} onClick={goBack}></div>
+          <h2>{questionName}</h2>
+        </div>
       </div>
-    )
-    setShowElement(!showElement);
+    );
+  } 
+
+  const handleQuestionClick = (el) => {
+    const elementKey = el.target.id.split('question')[1];
+    console.log('Clicked element:', el.target.id);
+
+    questions.questions.forEach((question) => {
+      if(elementKey == question.id){
+        console.log("YES");
+        setQuestionInfo(moduleCode(question.name, "", question.description));
+        setShowElement(true);
+        return;
+      }
+    })
   };
 
   var questionList = []
@@ -30,11 +47,11 @@ function App() {
     </li>)
   })
 
-
   return (
 
     <div className={styles.app}>
-      {showElement? module  : "no"}
+      {showElement? (questionInfo) : ''}
+
       <div id="show-question"></div>
       <h1 className={styles.h1}>QR Scanning Code</h1>
 
