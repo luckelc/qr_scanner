@@ -17,7 +17,10 @@ function App() {
       <div className={styles.module}>
         <div>
           <div className={styles.go_back} onClick={goBack}></div>
-          <h2>{questionName}</h2>
+          <div className={styles.info}>
+            <h2>{questionName}</h2>
+            <p>{questionDesc}</p>
+          </div>
         </div>
       </div>
     );

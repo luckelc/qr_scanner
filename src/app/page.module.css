@@ -75,8 +75,14 @@
   border-top-left-radius: 15px;
 }
 
+.module .info{
+  padding: 1em 1.5em 1em 1.5em;
+}
 .module h2{
-  margin: .35em .25em 0 .25em;
+
+}
+.module p{
+  margin-left: .25em;
 }
 
 .nav{
