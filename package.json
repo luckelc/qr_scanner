@@ -1,5 +1,5 @@
 {
-  "name": "qr_code_scanner",
+  "name": "qr_quest_scanner",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "html5-qrcode": "^2.3.8",
-    "next": "^13.4.19",
+    "next": "13.5.2",
+    "qr-scanner": "^1.4.2",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   }
