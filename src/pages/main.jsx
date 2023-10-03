@@ -5,40 +5,21 @@ import Image from 'next/image'
 import questions from "@/questions.json";
 import styles from '@/styles/index.module.css'
 import QuestionRow from '@/components/QuestionRow';
+import ModuleComponent from '@/components/Module';
 
 export default function QrScannerHomePage() {
-  const [showModule, setShowModule] = useState(false);
-  const [questionInfo, setQuestionInfo] = useState('Test text');
-
-  const goBack = (event) => {
-    setShowModule(false);
-  };
-
-  function moduleCode(questionName, questionImageUrl, questionDesc) {
-    let hasImages = false;
-    if(questionImageUrl != "" && questionImageUrl != null){
-      hasImages = true
-    }
-    return (
-      <div className={styles.module}>
-        <div>
-          <div className={styles.go_back} onClick={goBack}></div>
-          <div className={styles.info}>
-            <h2>{questionName}</h2>
-            <p>{questionDesc}</p>
-            {hasImages? (<img src={questionImageUrl} alt={'Image of ' + questionName}/>) : ""}
-          </div>
-        </div>
-      </div>
-    );
-  } 
+  const [isModuleVisible, setIsModuleVisible] = useState(false);
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
 
   function getQuestionHandler(questionIndex) { 
     const result = questions.questions[questionIndex];
-    console.log(result)
     return result
   }
 
+  const toggleModuleVisibilityText = (questionData) => {
+    setIsModuleVisible(true);
+    setSelectedQuestion(questionData); // Store the selected question data
+  };
   
   return (
     <>
@@ -49,11 +30,12 @@ export default function QrScannerHomePage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        {showModule? (questionInfo) : ''}
+        {isModuleVisible? (<ModuleComponent question={selectedQuestion} onClick={setIsModuleVisible}/>) : ''}
+
         <h1 className={styles.h1}>QR Scanning Code</h1>
-          <QuestionRow question={getQuestionHandler(0)} />
-          <QuestionRow question={getQuestionHandler(1)} />
-          <QuestionRow question={getQuestionHandler(2)} />
+        <QuestionRow onClick={toggleModuleVisibilityText} question={getQuestionHandler(0)} />
+        <QuestionRow onClick={toggleModuleVisibilityText} question={getQuestionHandler(1)} />
+        <QuestionRow onClick={toggleModuleVisibilityText} question={getQuestionHandler(2)} />
 
         <div className={styles.nav}>
           <div className={styles.navGroup}>

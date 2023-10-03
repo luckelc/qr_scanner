@@ -1,24 +1,14 @@
-'use client';
 import styles from '@/styles/index.module.css'
-import React, {useState} from 'react';
+import React from 'react';
 
-const QuestionRow = (questionObject)  => {
-  
-  const [showModule, setShowModule] = useState(false);
-  const question = questionObject.question;
-
-  const handleQuestionClick = (e) => {
-      const elementKey = e.target.id.split('question')[1];
-      console.log('Clicked element:', e.target.id);
-      setShowQuestion
-  };
-  //question.color.hex
+function QuestionRow({onClick, question}){
   
   return (
     <li key={question.id} className={styles.question}>
       <button
+        style={{backgroundColor: question.color.hex}}
        className={styles.questionButton}
-        onClick={(e) => handleQuestionClick(e)}
+        onClick={() => onClick(question)}
         id={"question" + question.id}
       >
         <h3>{question.name}</h3>
