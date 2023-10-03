@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 
-import QrScanner from 'qr-scanner';
 import questions from '@/questions.json';
 import Head from 'next/head'
 import styles from '@/styles/index.module.css'
@@ -19,7 +18,7 @@ export default function Home() {
         height: 250,
       },
 
-      fps: 5,
+      fps: 6,
 
     });
 
