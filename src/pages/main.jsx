@@ -6,6 +6,7 @@ import styles from '@/styles/index.module.css'
 import QuestionRow from '@/components/QuestionRow';
 import ModuleComponent from '@/components/Module';
 import Html5QrcodePlugin from '@/components/Html5QrcodePlugin';
+import { Html5QrcodeScanner } from 'html5-qrcode';
 
 export default function QrScannerHomePage() {
   const [isModuleVisible, setIsModuleVisible] = useState(false);
@@ -22,10 +23,11 @@ export default function QrScannerHomePage() {
     setSelectedQuestion(questionData); // Store the selected question data
   };
 
-  const onNewScanResult = (decodedText, decodedResult) => {
-    // handle decoded results here
-  };
-  
+  const getInputFromScan = (scanData) => {
+    console.log(scanData)
+    setIsScannerVisible(false)
+  }
+
   return (
     <>
       <Head>
@@ -35,30 +37,35 @@ export default function QrScannerHomePage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+
         {isScannerVisible? (
-          <Html5QrcodePlugin
-            className={styles.QrScanner}
-            fps={10}
-            // qrbox={250} // Try to do the scan without this property
-            disableFlip={false}
-            qrCodeSuccessCallback={onNewScanResult}
-            />
 
-        ) : ''}
-
-        {isModuleVisible? (<ModuleComponent question={selectedQuestion} onClick={setIsModuleVisible}/>) : ''}
-
-        <h1 className={styles.h1}>QR Scanning Code</h1>
-        <QuestionRow onClick={toggleModuleVisibilityText} question={getQuestionHandler(0)} />
-        <QuestionRow onClick={toggleModuleVisibilityText} question={getQuestionHandler(1)} />
-        <QuestionRow onClick={toggleModuleVisibilityText} question={getQuestionHandler(2)} />
-
-        <div className={styles.nav}>
-          <div className={styles.navGroup}>
-            <button onClick={setIsScannerVisible} className={styles.scan}>SCAN</button>
-            <button className={styles.give_up}>GIVE UP</button>
+          <div className="scanner">
+            <Html5QrcodePlugin
+                resultFromScan={getInputFromScan}
+                />
           </div>
-        </div>
+
+        ) : (
+
+          <div className="questions">
+
+            {isModuleVisible? (<ModuleComponent question={selectedQuestion} onClick={setIsModuleVisible}/>) : ''}
+            <h1 className={styles.h1}>QR Scanning Code</h1>
+            <QuestionRow onClick={toggleModuleVisibilityText} question={getQuestionHandler(0)} />
+            <QuestionRow onClick={toggleModuleVisibilityText} question={getQuestionHandler(1)} />
+            <QuestionRow onClick={toggleModuleVisibilityText} question={getQuestionHandler(2)} />
+
+            <div className={styles.nav}>
+              <div className={styles.navGroup}>
+                <button onClick={setIsScannerVisible} className={styles.scan}>SCAN</button>
+                <button className={styles.give_up}>GIVE UP</button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        
       </main>
     </>
   )
