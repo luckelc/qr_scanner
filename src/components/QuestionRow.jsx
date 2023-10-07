@@ -2,12 +2,12 @@ import styles from '@/styles/index.module.css'
 import React from 'react';
 
 function QuestionRow({onClick, question}){
-  
   return (
     <li key={question.id} className={styles.question}>
       <button
-        style={{backgroundColor: question.color.hex}}
-       className={styles.questionButton}
+        style={question.found? ({backgroundColor: 'white'}) :
+          ({backgroundColor: question.color.hex})}
+        className={styles.questionButton}
         onClick={() => onClick(question)}
         id={"question" + question.id}
       >

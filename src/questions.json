@@ -1,7 +1,7 @@
 {
     "questions": [
         {
-            "id": 1,
+            "id": "1",
             "question" : "Question1",
             "name" : "Name1",
             "description" : "Description1",
@@ -16,11 +16,11 @@
             "color" : {
                 "rgba" : [9, 142, 231, 1],
                 "hex" : "#098EE7"
-            }
-                
+            },
+            "found" : false
         },
         {
-            "id": 2,
+            "id": "2",
             "question" : "Question2",
             "name" : "Name2",
             "description" : "Description2",
@@ -35,11 +35,11 @@
             "color" : {
                 "rgba" : [255, 0, 84, 1],
                 "hex" : "#FF0054"
-            }
-                
+            },
+            "found" : false
         },
         {
-            "id": 3,
+            "id": "3",
             "question" : "Question3",
             "name" : "Name3",
             "description" : "Description3",
@@ -54,8 +54,8 @@
             "color" : {
                 "rgba" : [141, 205, 55, 1],
                 "hex" : "#8DCD37"
-            }
-                
+            },
+            "found" : false
         }
     ]
 }
