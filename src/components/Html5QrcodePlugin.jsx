@@ -41,8 +41,9 @@ const Html5QrcodePlugin = ({resultFromScan, removeScanner}) => {
                         removeScanner(false)
 
                     }).catch((err) => {
-
+                        console.log('err')
                     });
+                       
                 });
 
             }
