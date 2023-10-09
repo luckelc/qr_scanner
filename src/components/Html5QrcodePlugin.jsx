@@ -1,6 +1,8 @@
-// file = Html5QrcodePlugin.jsx
+// TODO : Instantiate the QuestionForm from here and then if user has made input in the form, change to the main layout again.
+
+import QuestionForm from '@/components/QuestionForm'
 import { Html5Qrcode } from 'html5-qrcode';
-import { useEffect } from 'react';
+import { useEffect, React } from 'react';
 const qrcodeRegionId = "reader";
 
 const Html5QrcodePlugin = ({resultFromScan, removeScanner}) => {
@@ -24,6 +26,7 @@ const Html5QrcodePlugin = ({resultFromScan, removeScanner}) => {
                     html5QrCode.stop().then((ignore) => {
                         resultFromScan(decodedText);
                         removeScanner(false)
+
 
                     }).catch((err) => {
                         // Stop failed, handle it.

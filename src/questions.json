@@ -17,7 +17,8 @@
                 "rgba" : [9, 142, 231, 1],
                 "hex" : "#098EE7"
             },
-            "found" : false
+            "found" : false,
+            "userInput" : ""
         },
         {
             "id": "2",
@@ -36,7 +37,8 @@
                 "rgba" : [255, 0, 84, 1],
                 "hex" : "#FF0054"
             },
-            "found" : false
+            "found" : false,
+            "userInput" : ""
         },
         {
             "id": "3",
@@ -55,7 +57,8 @@
                 "rgba" : [141, 205, 55, 1],
                 "hex" : "#8DCD37"
             },
-            "found" : false
+            "found" : false,
+            "userInput" : ""
         }
     ]
 }

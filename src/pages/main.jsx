@@ -44,6 +44,7 @@
       questionsData.forEach(question => {
         if(question.id == scanData){
           question.found = true;
+          localStorage.setItem('questionsData', JSON.stringify(questionsData));
         }
       });
     };
@@ -65,6 +66,7 @@
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
+
         <main className={styles.main}>
 
           {isScannerVisible? (
@@ -79,11 +81,12 @@
           ) : (
 
             <div className="questions">
-
               {isModuleVisible? (<ModuleComponent question={selectedQuestion} onClick={setIsModuleVisible}/>) : ''}
               <h1 className={styles.h1}>QR Scanning Code</h1>
               
-              {questionBlock}
+              <ul>
+                {questionBlock}
+              </ul>
 
               <div className={styles.nav}>
                 <div className={styles.navGroup}>

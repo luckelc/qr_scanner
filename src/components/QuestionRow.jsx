@@ -5,7 +5,7 @@ function QuestionRow({onClick, question}){
   return (
     <li key={question.id} className={styles.question}>
       <button
-        style={question.found? ({backgroundColor: 'white'}) :
+        style={question.found? ({backgroundColor: 'white', pointerEvents: 'none'}) :
           ({backgroundColor: question.color.hex})}
         className={styles.questionButton}
         onClick={() => onClick(question)}
