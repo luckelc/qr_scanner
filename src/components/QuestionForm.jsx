@@ -7,7 +7,6 @@ function QuestionForm({question}){
 
   function chooseAnswer(answerChosen){
     question.userInput = answerChosen;
-
   }
 
 

@@ -2,11 +2,18 @@
 
 import QuestionForm from '@/components/QuestionForm'
 import { Html5Qrcode } from 'html5-qrcode';
-import { useEffect, React } from 'react';
+import { QuestionContext } from '@/pages/main'
+import React, {useContext, useState, useEffect } from 'react';
 const qrcodeRegionId = "reader";
 
-const Html5QrcodePlugin = ({resultFromScan, removeScanner}) => {
+const Html5QrcodePlugin = ({removeScanner}) => {
+    
+    const [questionData, setQuestionData] = useContext(QuestionContext);
+    const [questionFormVisibility, setQuestionFormVisibility] = useState(false);
+    const [selectedQuestionData, setSelectedQuestionData] = useState(null);
+
     useEffect(() => {
+        console.log(questionData)
         // This method will trigger user permissions
         Html5Qrcode.getCameras().then(devices => {
             /*
@@ -22,7 +29,19 @@ const Html5QrcodePlugin = ({resultFromScan, removeScanner}) => {
                     fps: 10,    // Optional, frame per seconds for qr code scanning
                 },
                 (decodedText, decodedResult) => {
-
+                    
+                    if (Array.isArray(questionData)) {
+                        questionData.forEach(question => {
+                            if(question.id == decodedText && question.found != true){
+                                question.found = true;
+                                localStorage.setItem('questionsData', JSON.stringify(questionsData));
+                                setSelectedQuestionData(question)
+                                setQuestionFormVisibility(true)
+                            }
+                        });
+                    }
+                    
+                    /*
                     html5QrCode.stop().then((ignore) => {
                         resultFromScan(decodedText);
                         removeScanner(false)
@@ -31,6 +50,7 @@ const Html5QrcodePlugin = ({resultFromScan, removeScanner}) => {
                     }).catch((err) => {
                         // Stop failed, handle it.
                     });
+                    */
                 },
                 (errorMessage) => {
                     // parse error, ignore it.
@@ -57,6 +77,7 @@ const Html5QrcodePlugin = ({resultFromScan, removeScanner}) => {
 
     return (
         <>
+            {questionFormVisibility? (<QuestionForm question={selectedQuestionData}/>) : ('')}
             <div id={qrcodeRegionId} style={{height: '100%', backgroundColor: 'blue', display: 'flex', flexDirection: 'column', justifyContent: 'center'} } > </div>
             <button id='goBack' style={{position: 'fixed', left: '0', top: '0', zIndex: '1', padding: '0.45em', margin: '0.65em'}}>Go back</button>
         </>
