@@ -5,10 +5,11 @@ import { Html5Qrcode } from 'html5-qrcode';
 import { QuestionContext } from '@/pages/main'
 import React, {useContext, useState, useEffect } from 'react';
 const qrcodeRegionId = "reader";
+import {getQuestionArray} from '@/components/ContextProvider'
 
 const Html5QrcodePlugin = ({removeScanner}) => {
-    
-    const [questionData, setQuestionData] = useContext(QuestionContext);
+
+    const [questionData, setQuestionData] = getQuestionArray();
     const [questionFormVisibility, setQuestionFormVisibility] = useState(false);
     const [selectedQuestionData, setSelectedQuestionData] = useState(null);
 
@@ -17,8 +18,8 @@ const Html5QrcodePlugin = ({removeScanner}) => {
         // This method will trigger user permissions
         Html5Qrcode.getCameras().then(devices => {
             /*
-             * devices would be an array of objects of type:
-             * { id: "id", label: "label" }
+                * devices would be an array of objects of type:
+                * { id: "id", label: "label" }
             */
             if (devices && devices.length) {
                 var cameraId = devices[0].id;
@@ -34,7 +35,6 @@ const Html5QrcodePlugin = ({removeScanner}) => {
                         questionData.forEach(question => {
                             if(question.id == decodedText && question.found != true){
                                 question.found = true;
-                                localStorage.setItem('questionsData', JSON.stringify(questionsData));
                                 setSelectedQuestionData(question)
                                 setQuestionFormVisibility(true)
                             }
@@ -66,13 +66,14 @@ const Html5QrcodePlugin = ({removeScanner}) => {
                     }).catch((err) => {
                         console.log('err')
                     });
-                       
+                        
                 });
 
             }
         }).catch(err => {
             // handle err
         });
+
     }, []);
 
     return (

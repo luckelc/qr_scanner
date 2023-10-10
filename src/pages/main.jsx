@@ -1,22 +1,18 @@
+// TODO : Maybe create a state in the context that is a bool about if the useEffect function has fired or not, and then check in this useEffect if it has
 'use client';
-import React, {createContext, useState, useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import Head from 'next/head'
-import questions from "@/questions.json";
 import styles from '@/styles/index.module.css'
 import QuestionRow from '@/components/QuestionRow';
 import ModuleComponent from '@/components/Module';
 import Html5QrcodePlugin from '@/components/Html5QrcodePlugin';
-import {QuestionProvider} from '@/components/QuestionProvider'
-import Test from '@/components/Test'
-
-export const QuestionContext = createContext();
+import {getQuestionArray} from '@/components/ContextProvider'
 
 export default function QrScannerHomePage() {
-  const [questionData, setQuestionData] = useState(questions.questions);
-  /*const [isModuleVisible, setIsModuleVisible] = useState(false);
+  const [questionData, setQuestionData] = getQuestionArray();
+  const [isModuleVisible, setIsModuleVisible] = useState(false);
   const [isScannerVisible, setIsScannerVisible] = useState(false);
   const [selectedQuestionData, setSelectedQuestionData] = useState(null);
-
   const [questionBlock, setQuestionBlock] = useState([]);
 
   useEffect(() => {
@@ -35,7 +31,8 @@ export default function QrScannerHomePage() {
       }
       setQuestionBlock(temp)
     }
-  }, [questionData]);
+
+  }, []);
 
   function getQuestionHandler(questionIndex) {
     return questionData[questionIndex]
@@ -44,7 +41,7 @@ export default function QrScannerHomePage() {
   const toggleModuleVisibilityText = (selectedQuestion) => {
     setIsModuleVisible(true);
     setSelectedQuestionData(selectedQuestion); // Store the selected question data
-  };*/
+  };
 
   return (
     <>
@@ -55,9 +52,35 @@ export default function QrScannerHomePage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <QuestionContext.Provider value={questionData} className={styles.main}>
-        <Test/>
-      </QuestionContext.Provider>
+      <div className={styles.main}>
+        {isScannerVisible? (
+
+          <div className="scanner">
+            <Html5QrcodePlugin
+                removeScanner={setIsScannerVisible}
+                questionData={questionData}
+            />
+          </div>
+
+        ) : (
+
+          <div>
+            {isModuleVisible? (<ModuleComponent question={selectedQuestionData} onClick={setIsModuleVisible}/>) : ''}
+            <h1 className={styles.h1}>QR Scanning Code</h1>
+
+            <ul>
+              {questionBlock}
+            </ul>
+
+            <div className={styles.nav}>
+              <div className={styles.navGroup}>
+                <button onClick={setIsScannerVisible} className={styles.scan}>SCAN</button>
+                <button className={styles.give_up}>GIVE UP</button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </>
   )
 }
