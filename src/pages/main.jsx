@@ -6,23 +6,19 @@ import styles from '@/styles/index.module.css'
 import QuestionRow from '@/components/QuestionRow';
 import ModuleComponent from '@/components/Module';
 import Html5QrcodePlugin from '@/components/Html5QrcodePlugin';
+import {QuestionProvider} from '@/components/QuestionProvider'
+import Test from '@/components/Test'
 
 export const QuestionContext = createContext();
 
 export default function QrScannerHomePage() {
-  const [isModuleVisible, setIsModuleVisible] = useState(false);
+  const [questionData, setQuestionData] = useState(questions.questions);
+  /*const [isModuleVisible, setIsModuleVisible] = useState(false);
   const [isScannerVisible, setIsScannerVisible] = useState(false);
   const [selectedQuestionData, setSelectedQuestionData] = useState(null);
 
-  const [questionData, setQuestionData] = useState(questions.questions);
-
-  useEffect(() => {
-    const storedData = localStorage.getItem('questionsData');
-    const initialData = storedData ? JSON.parse(storedData) : questions.questions;
-    setQuestionData(initialData);
-  }, []);
-
   const [questionBlock, setQuestionBlock] = useState([]);
+
   useEffect(() => {
     if (questionData.length > 0) {
       let temp = []
@@ -48,7 +44,7 @@ export default function QrScannerHomePage() {
   const toggleModuleVisibilityText = (selectedQuestion) => {
     setIsModuleVisible(true);
     setSelectedQuestionData(selectedQuestion); // Store the selected question data
-  };
+  };*/
 
   return (
     <>
@@ -60,36 +56,7 @@ export default function QrScannerHomePage() {
       </Head>
 
       <QuestionContext.Provider value={questionData} className={styles.main}>
-
-        {isScannerVisible? (
-
-          <div className="scanner">
-            <Html5QrcodePlugin
-                removeScanner={setIsScannerVisible}
-                questionData={questionData}
-            />
-          </div>
-
-        ) : (
-
-          <div>
-            {isModuleVisible? (<ModuleComponent question={selectedQuestionData} onClick={setIsModuleVisible}/>) : ''}
-            <h1 className={styles.h1}>QR Scanning Code</h1>
-            
-            <ul>
-              {questionBlock}
-            </ul>
-
-            <div className={styles.nav}>
-              <div className={styles.navGroup}>
-                <button onClick={setIsScannerVisible} className={styles.scan}>SCAN</button>
-                <button className={styles.give_up}>GIVE UP</button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        
+        <Test/>
       </QuestionContext.Provider>
     </>
   )
