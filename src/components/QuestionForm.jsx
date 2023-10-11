@@ -1,20 +1,23 @@
 import styles from '@/styles/index.module.css'
-import React from 'react';
+import React, { useEffect }  from 'react';
 import QuestionAnswer from '@/components/QuestionAnswer';
 
 
-function QuestionForm({question}){
+function QuestionForm({question, onExit}){
 
   function chooseAnswer(answerChosen){
     question.userInput = answerChosen;
+    question.found = true;
+    onExit()
   }
 
-
+  console.log(question)
   let answerBlock = []
-  question.answers.forEach(ans => {
-    <QuestionAnswer answerText={ans} onClick={chooseAnswer}/>
-  });
+  for (let i = 0; i < question.answers.length; i++) {
+    answerBlock.push(<QuestionAnswer key={i} answerText={question.answers[i].text} onClick={chooseAnswer}/>)
+  }
   let hasImages = true;
+
   return (
     <div className={styles.questionForm}>
       <div>

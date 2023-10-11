@@ -13,6 +13,10 @@ const Html5QrcodePlugin = ({removeScanner}) => {
     const [questionFormVisibility, setQuestionFormVisibility] = useState(false);
     const [selectedQuestionData, setSelectedQuestionData] = useState(null);
 
+    function exitToQuestions(){
+        removeScanner()
+    }
+
     useEffect(() => {
         console.log(questionData)
         // This method will trigger user permissions
@@ -34,23 +38,15 @@ const Html5QrcodePlugin = ({removeScanner}) => {
                     if (Array.isArray(questionData)) {
                         questionData.forEach(question => {
                             if(question.id == decodedText && question.found != true){
-                                question.found = true;
-                                setSelectedQuestionData(question)
-                                setQuestionFormVisibility(true)
+                                html5QrCode.stop().then((ignore) => {
+                                    setSelectedQuestionData(question)
+                                    setQuestionFormVisibility(true)
+                                }).catch((err) => {
+                                    console.error('Something went wrong, please rescan the qrcode')
+                                });
                             }
                         });
                     }
-                    
-                    /*
-                    html5QrCode.stop().then((ignore) => {
-                        resultFromScan(decodedText);
-                        removeScanner(false)
-
-
-                    }).catch((err) => {
-                        // Stop failed, handle it.
-                    });
-                    */
                 },
                 (errorMessage) => {
                     // parse error, ignore it.
@@ -61,10 +57,10 @@ const Html5QrcodePlugin = ({removeScanner}) => {
 
                 document.getElementById('goBack').addEventListener("click", function() {
                     html5QrCode.stop().then((ignore) => {
-                        removeScanner(false)
+                        removeScanner()
 
                     }).catch((err) => {
-                        console.log('err')
+
                     });
                         
                 });
@@ -78,7 +74,7 @@ const Html5QrcodePlugin = ({removeScanner}) => {
 
     return (
         <>
-            {questionFormVisibility? (<QuestionForm question={selectedQuestionData}/>) : ('')}
+            {questionFormVisibility? (<QuestionForm onExit={exitToQuestions} question={selectedQuestionData}/>) : ('')}
             <div id={qrcodeRegionId} style={{height: '100%', backgroundColor: 'blue', display: 'flex', flexDirection: 'column', justifyContent: 'center'} } > </div>
             <button id='goBack' style={{position: 'fixed', left: '0', top: '0', zIndex: '1', padding: '0.45em', margin: '0.65em'}}>Go back</button>
         </>

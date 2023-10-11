@@ -32,7 +32,7 @@ export default function QrScannerHomePage() {
       setQuestionBlock(temp)
     }
 
-  }, []);
+  }, [questionData]);
 
   function getQuestionHandler(questionIndex) {
     return questionData[questionIndex]
@@ -57,7 +57,7 @@ export default function QrScannerHomePage() {
 
           <div className="scanner">
             <Html5QrcodePlugin
-                removeScanner={setIsScannerVisible}
+                removeScanner={() => setIsScannerVisible(false)}
                 questionData={questionData}
             />
           </div>

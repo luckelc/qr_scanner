@@ -7,10 +7,10 @@
             "description" : "Description1",
             "answers" : [
                 {
-                    "1" : "Yes"
+                    "text" : "Yes"
                 },
                 {
-                    "2" : "No"
+                    "text" : "No"
                 }
             ],
             "color" : {
@@ -27,10 +27,10 @@
             "description" : "Description2",
             "answers" : [
                 {
-                    "1" : "Answer1"
+                    "text" : "Answer1"
                 },
                 {
-                    "2" : "Answer2"
+                    "text" : "Answer2"
                 }
             ],
             "color" : {
@@ -47,10 +47,10 @@
             "description" : "Description3",
             "answers" : [
                 {
-                    "1" : "Yes"
+                    "text" : "Yes"
                 },
                 {
-                    "2" : "No"
+                    "text" : "No"
                 }
             ],
             "color" : {
