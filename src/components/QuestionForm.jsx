@@ -26,10 +26,6 @@ function QuestionForm({question, onExit}){
     onExit()
   }
 
-  useEffect(() =>{
-    localStorage.setItem(localStorageKey, JSON.stringify(questionData));
-  }, [question])
-
   console.log(question)
   let answerBlock = []
   for (let i = 0; i < question.answers.length; i++) {
