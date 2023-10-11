@@ -6,7 +6,7 @@ import styles from '@/styles/index.module.css'
 import QuestionRow from '@/components/QuestionRow';
 import ModuleComponent from '@/components/Module';
 import Html5QrcodePlugin from '@/components/Html5QrcodePlugin';
-import {getQuestionArray} from '@/components/ContextProvider'
+import { getQuestionArray } from '@/components/ContextProvider';
 
 export default function QrScannerHomePage() {
   const [questionData, setQuestionData] = getQuestionArray();
@@ -54,7 +54,6 @@ export default function QrScannerHomePage() {
 
       <div className={styles.main}>
         {isScannerVisible? (
-
           <div className="scanner">
             <Html5QrcodePlugin
                 removeScanner={() => setIsScannerVisible(false)}

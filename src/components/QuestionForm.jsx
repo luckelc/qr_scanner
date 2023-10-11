@@ -1,15 +1,34 @@
 import styles from '@/styles/index.module.css'
 import React, { useEffect }  from 'react';
 import QuestionAnswer from '@/components/QuestionAnswer';
+import {getQuestionArray, localStorageKey} from './ContextProvider';
 
 
 function QuestionForm({question, onExit}){
+  const [questionData, setQuestionData] = getQuestionArray();
 
   function chooseAnswer(answerChosen){
-    question.userInput = answerChosen;
-    question.found = true;
+      // Create a new array by mapping over the questionData
+    const updatedQuestions = questionData.map((q) => {
+      // Check if the current question matches your condition
+      if (q === question) {
+        // Clone the question object to avoid direct mutation
+        const updatedQuestion = { ...q };
+        updatedQuestion.userInput = answerChosen;
+        updatedQuestion.found = true;
+        return updatedQuestion;
+      }
+      return q; // For questions that don't match the condition, return as is
+    });
+
+    // Update the state with the modified questionData
+    setQuestionData(updatedQuestions);
     onExit()
   }
+
+  useEffect(() =>{
+    localStorage.setItem(localStorageKey, JSON.stringify(questionData));
+  }, [question])
 
   console.log(question)
   let answerBlock = []

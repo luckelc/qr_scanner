@@ -2,13 +2,11 @@
 
 import QuestionForm from '@/components/QuestionForm'
 import { Html5Qrcode } from 'html5-qrcode';
-import { QuestionContext } from '@/pages/main'
-import React, {useContext, useState, useEffect } from 'react';
-const qrcodeRegionId = "reader";
+import React, {useState, useEffect } from 'react';
 import {getQuestionArray} from '@/components/ContextProvider'
+const qrcodeRegionId = 'reader';
 
 const Html5QrcodePlugin = ({removeScanner}) => {
-
     const [questionData, setQuestionData] = getQuestionArray();
     const [questionFormVisibility, setQuestionFormVisibility] = useState(false);
     const [selectedQuestionData, setSelectedQuestionData] = useState(null);
