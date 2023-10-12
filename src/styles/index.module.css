@@ -57,18 +57,30 @@
   margin-bottom: .5em;
 }
 
-.question button{
+.question > *{
   width: 100%;
   transition: all .25s;
   border-radius: 7.5px;
-  padding: 1em .5em 1em .5em;
+  height: 9em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: .5em;
 }
 
-.question button *{
+.question h3{
+  font-size: 28px;
+}
+
+.question p{
+  font-size: 18px;
+}
+
+.question > * *{
   pointer-events: none;
 }
 
-.question button:hover{
+.question > *:hover{
   transition: all .15s;
   transform: scale(1.05);
   cursor: pointer;

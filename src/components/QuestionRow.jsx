@@ -12,6 +12,7 @@ function QuestionRow({onClick, question}){
         id={"question" + question.id}
       >
         <h3>{question.name}</h3>
+        <p>{question.description}</p>
       </button>
     </li>
   );
