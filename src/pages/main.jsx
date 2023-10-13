@@ -53,8 +53,13 @@ export default function QrScannerHomePage() {
       </Head>
 
       <div className={styles.main}>
+        <div className={styles.main_nav}>
+          {isScannerVisible? (<button id='bo_back' className={styles.go_back}></button>) : (<div></div>)}
+          <button className={styles.give_up}></button>
+        </div>
+
         {isScannerVisible? (
-          <div className="scanner">
+          <div className={`${styles.scanner} ${styles.content}`}>
             <Html5QrcodePlugin
                 removeScanner={() => setIsScannerVisible(false)}
                 questionData={questionData}
@@ -63,18 +68,19 @@ export default function QrScannerHomePage() {
 
         ) : (
 
-          <div>
+          <div className={styles.content}>
             {isModuleVisible? (<ModuleComponent question={selectedQuestionData} onClick={setIsModuleVisible}/>) : ''}
-            <h1 className={styles.h1}>QR Scanning Code</h1>
+            <div className={styles.temp}>
+              <h1 className={styles.h1}>QR Scanning Code</h1>
 
-            <ul>
-              {questionBlock}
-            </ul>
+              <ul>
+                {questionBlock}
+              </ul>
+            </div>
 
             <div className={styles.nav}>
               <div className={styles.navGroup}>
                 <button onClick={setIsScannerVisible} className={styles.scan}>SCAN</button>
-                <button className={styles.give_up}>GIVE UP</button>
               </div>
             </div>
           </div>

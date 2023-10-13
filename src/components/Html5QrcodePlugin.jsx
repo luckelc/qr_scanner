@@ -53,7 +53,7 @@ const Html5QrcodePlugin = ({removeScanner}) => {
                 // Start failed, handle it.
                 });
 
-                document.getElementById('goBack').addEventListener("click", function() {
+                document.getElementById('go_back').addEventListener("click", function() {
                     html5QrCode.stop().then((ignore) => {
                         removeScanner()
 
@@ -74,7 +74,6 @@ const Html5QrcodePlugin = ({removeScanner}) => {
         <>
             {questionFormVisibility? (<QuestionForm onExit={exitToQuestions} question={selectedQuestionData}/>) : ('')}
             <div id={qrcodeRegionId} style={{height: '100%', backgroundColor: 'blue', display: 'flex', flexDirection: 'column', justifyContent: 'center'} } > </div>
-            <button id='goBack' style={{position: 'fixed', left: '0', top: '0', zIndex: '1', padding: '0.45em', margin: '0.65em'}}>Go back</button>
         </>
     );
 };
