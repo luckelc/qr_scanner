@@ -11,15 +11,21 @@
   background-color: aqua;
   display: flex;
   justify-content: space-between;
-  padding: .5em 1.25em .5em 1.25em;
+  padding: .5em 1.5em .5em 1.5em;
 }
 
-.main_nav .give_up{
+.main_nav button{
   width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-.main_nav .go_back{
-  width: 48px;
+.main_nav button svg{
+  stroke: white;
+  fill: white;
+  pointer-events: none;
+  width: 5em;
+  height: 5em;
 }
 
 .main .content{
@@ -87,9 +93,35 @@
   border-radius: 7.5px;
   height: 9em;
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
   padding: .5em;
+}
+
+.question .checkmark{
+  height: 100%;
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.question svg{
+  padding: .25em;
+  width: 3.5em;
+  height: 3.5em;
+  
+}
+
+.question svg path{
+  padding: .25em;
+  width: 3.5em;
+  height: 3.5em;
+  fill: white;
+}
+
+.question .info{
+  height: 100%;
+  flex: 13;
+  text-align: start;
 }
 
 .question h3{
@@ -193,11 +225,6 @@
   transform: scale(1.05);
 }
 
-
-.questionButton{
-  background-color: red;
-}
-
 .QrScanner{
   position: fixed;
   left: 0;
@@ -219,24 +246,65 @@
   align-items: center;
 }
 
-
-.questionForm > div{
+.questionForm > .card{
   padding: .5em;
   position: relative;
   z-index: 101;
-  width: 90%;
+  width: 70%;
   height: 30em;
   margin: 0 auto;
   background-color: blueviolet;
-  border-top-left-radius: 15px;
+  border-radius: 15px;
+  overflow: hidden;
+  --card-cover-height: 14em
 }
 
-.questionForm .info{
-  height: 100%;
+.questionForm .cover{
+  width: 100%;
+  height: var(--card-cover-height);
+  overflow: hidden;
 }
-
 .questionForm img{
-  max-width: 100%;
-  object-fit: contain;
-  padding: 1em;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  padding: .5em;
+  padding-bottom: .15em;
+}
+.questionForm h2{
+  padding: .35em .15em .375em .15em;
+}
+.questionForm .info{
+  height: calc(100% - var(--card-cover-height));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.questionForm ul{
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.questionForm ul li{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.questionForm ul button{
+  min-width: 4em;
+  height: 2em;
+  padding: .25em;
+  font-size: 20px;
+}
+
+.questionForm .answer{
+  display: block;
+  margin: 0 auto;
+  max-width: 20em;
+  width: 90%;
+  height: 3em;
+  font-size: 18px;
 }

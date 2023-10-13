@@ -1,47 +1,51 @@
 import styles from '@/styles/index.module.css'
-import React, { useEffect }  from 'react';
+import React, { useEffect, useState }  from 'react';
 import QuestionAnswer from '@/components/QuestionAnswer';
-import {getQuestionArray, localStorageKey} from './ContextProvider';
+import {getQuestionArray} from './ContextProvider';
 
 
 function QuestionForm({question, onExit}){
   const [questionData, setQuestionData] = getQuestionArray();
+  const [selectedAnswer, setSelectedAnswer] = useState(question.userInput);
 
-  function chooseAnswer(answerChosen){
-      // Create a new array by mapping over the questionData
-    const updatedQuestions = questionData.map((q) => {
-      // Check if the current question matches your condition
-      if (q === question) {
-        // Clone the question object to avoid direct mutation
-        const updatedQuestion = { ...q };
-        updatedQuestion.userInput = answerChosen;
-        updatedQuestion.found = true;
-        return updatedQuestion;
-      }
-      return q; // For questions that don't match the condition, return as is
-    });
-
-    // Update the state with the modified questionData
-    setQuestionData(updatedQuestions);
-    onExit()
-  }
-
-  console.log(question)
   let answerBlock = []
   for (let i = 0; i < question.answers.length; i++) {
-    answerBlock.push(<QuestionAnswer key={i} answerText={question.answers[i].text} onClick={chooseAnswer}/>)
+    answerBlock.push(<QuestionAnswer key={i} selected={(question.answers[i].text === selectedAnswer)} answerText={question.answers[i].text} onClick={() => chooseAnswer(question.answers[i].text)}/>)
   }
-  let hasImages = true;
+
+  function chooseAnswer(answerChosen){
+
+    const updatedQuestions = questionData.map((q) => {
+      if (q.id === question.id) {
+        // Clone the question object to avoid direct mutation
+        return {
+          ...q,
+          userInput: answerChosen,
+          found: true,
+        };
+      }
+      return q;
+    });
+
+    setQuestionData(updatedQuestions);
+    setSelectedAnswer(answerChosen)
+  }
 
   return (
     <div className={styles.questionForm}>
-      <div>
+      <div className={styles.card}>
+        <div className={styles.cover}>
+          <img src={"/img/speaking.jpg"} alt={'Image of ' + question.name}/>
+        </div>
+
         <div className={styles.info}>
-          <h2>{question.question}</h2>
-          <ul>
-            {answerBlock}
-          </ul>
-          {hasImages? (<img src={"/img/speaking.jpg"} alt={'Image of ' + question.name}/>) : ""}
+          <div className={styles.form_content}>
+            <h2>{question.question}</h2>
+            <ul>
+              {answerBlock}
+            </ul>
+          </div>
+          <button className={styles.answer} onClick={() => onExit()}>Accept</button>
         </div>
       </div>
     </div>
