@@ -1,0 +1,10 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: qr_scanner_backend
+    environment:
+      MYSQL_ROOT_PASSWORD: ynjFM:Ty$hs?&8Kg
+      MYSQL_DATABASE: usermail_saves
+    ports:
+      - "3306:3306"
