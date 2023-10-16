@@ -7,6 +7,7 @@ import QuestionRow from '@/components/QuestionRow';
 import Html5QrcodePlugin from '@/components/Html5QrcodePlugin';
 import { getQuestionArray } from '@/components/ContextProvider';
 import QuestionForm from '@/components/QuestionForm';
+import axios from 'axios';
 
 export default function QrScannerHomePage() {
   const [questionData, setQuestionData] = getQuestionArray();
@@ -14,6 +15,19 @@ export default function QrScannerHomePage() {
   const [isScannerVisible, setIsScannerVisible] = useState(false);
   const [selectedQuestionData, setSelectedQuestionData] = useState(null);
   const [questionBlock, setQuestionBlock] = useState([]);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('/api/db');
+        setData(response.data);
+      } catch (error) {
+        console.error('Error fetching data', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     if (questionData.length > 0) {
