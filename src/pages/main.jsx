@@ -1,5 +1,4 @@
-// TODO : Maybe create a state in the context that is a bool about if the useEffect function has fired or not, and then check in this useEffect if it has
-'use client';
+'use strict';
 import React, {useState, useEffect } from 'react';
 import Head from 'next/head'
 import styles from '@/styles/index.module.css'
@@ -7,6 +6,47 @@ import QuestionRow from '@/components/QuestionRow';
 import Html5QrcodePlugin from '@/components/Html5QrcodePlugin';
 import { getQuestionArray } from '@/components/ContextProvider';
 import QuestionForm from '@/components/QuestionForm';
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, push, onValue, remove, get, child} from "firebase/database";
+import MailCollector from '@/components/MailCollector'
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB0RUhBocGEgEsjD3CPCpNfwz9L813Qge8",
+  authDomain: "qr-scanner-ff324.firebaseapp.com",
+  databaseURL: "https://qr-scanner-ff324-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "qr-scanner-ff324",
+  storageBucket: "qr-scanner-ff324.appspot.com",
+  messagingSenderId: "371473474823",
+  appId: "1:371473474823:web:f503a1f5d751a55b4291a2"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = ref(getDatabase(app), "user_data")
+
+const userObject = {
+  "mail": "person@testmail.com",
+  "points": "2"
+}
+
+export async function GetUserData() {
+  try {
+    const snapshot = await get(db);
+
+    if (snapshot.exists()) {
+      const jsonArray = Object.entries(snapshot.val()).map(([key, value]) => ({ key, value }));
+      return jsonArray;
+    } else {
+      return null; // Returning null to indicate no data
+    }
+  } catch (error) {
+    console.error(error);
+    return null; // Returning null in case of an error
+  }
+}
+
+const localStorageMailKey = 'user_mail'
 
 export default function QrScannerHomePage() {
   const [questionData, setQuestionData] = getQuestionArray();
@@ -14,6 +54,50 @@ export default function QrScannerHomePage() {
   const [isScannerVisible, setIsScannerVisible] = useState(false);
   const [selectedQuestionData, setSelectedQuestionData] = useState(null);
   const [questionBlock, setQuestionBlock] = useState([]);
+  const [isMailCollected, setIsMailColleted] = useState(false);
+
+  // Set the questionData to the default questions.questions data if there isn't any saved data in localStorage
+  useEffect(() => {
+    const storedData = localStorage.getItem(localStorageMailKey);
+    setIsMailColleted(storedData? storedData : false);
+    console.log('The mail is ' + isMailCollected);
+  }, []);
+
+  function SetUserMail(user_mail){
+    setIsMailColleted(true)
+    localStorage.setItem(localStorageMailKey, user_mail);
+  }
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Fetch the mail data
+      const fetchData = async () => {
+        const user_data = await GetUserData();
+        if (user_data) {
+          let keyFound = false; // Initialize a flag
+          for (const userData of user_data) {
+            if (userObject.mail === userData.value.mail) {
+              keyFound = true;
+              break; // Exit the loop when a matching key is found
+            }
+          }
+          if (keyFound) {
+            console.log('There is already a key with that value');
+            console.log(user_data);
+          } else {
+            push(db, userObject);
+            console.log('Pushed a key');
+          }
+        }else{
+          // No user_data indicates that the array isn't there, in that case you could still push it up.
+          push(db, userObject);
+          console.log('Pushed a key');
+        }
+      }
+      fetchData();
+
+    }
+  }, []);
 
   useEffect(() => {
     if (questionData.length > 0) {
@@ -51,7 +135,7 @@ export default function QrScannerHomePage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      
       <div className={styles.main}>
         <div className={styles.main_nav}>
 
@@ -73,6 +157,14 @@ export default function QrScannerHomePage() {
             </svg>
           </button>
         </div>
+
+        
+        {isMailCollected? (
+            <div>Email is collected</div>
+          ) : (
+            <MailCollector onSubmit={SetUserMail} />
+          )
+        }
 
         {isScannerVisible? (
 
