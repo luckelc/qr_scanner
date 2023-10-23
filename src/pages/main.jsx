@@ -10,7 +10,7 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, push, onValue, remove, get, child} from "firebase/database";
 import MailCollector from '@/components/MailCollector'
 
-
+// User_mail and firebase setup
 const firebaseConfig = {
   apiKey: "AIzaSyB0RUhBocGEgEsjD3CPCpNfwz9L813Qge8",
   authDomain: "qr-scanner-ff324.firebaseapp.com",
@@ -20,16 +20,13 @@ const firebaseConfig = {
   messagingSenderId: "371473474823",
   appId: "1:371473474823:web:f503a1f5d751a55b4291a2"
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = ref(getDatabase(app), "user_data")
-
 const userObject = {
   "mail": "person@testmail.com",
   "points": "2"
 }
-
 export async function GetUserData() {
   try {
     const snapshot = await get(db);
@@ -45,7 +42,6 @@ export async function GetUserData() {
     return null; // Returning null in case of an error
   }
 }
-
 const localStorageMailKey = 'user_mail'
 
 export default function QrScannerHomePage() {
@@ -55,6 +51,31 @@ export default function QrScannerHomePage() {
   const [selectedQuestionData, setSelectedQuestionData] = useState(null);
   const [questionBlock, setQuestionBlock] = useState([]);
   const [isMailCollected, setIsMailColleted] = useState(false);
+
+  const handleSendEmail = async () => {
+    try {
+      const response = await fetch('/api/sendEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json', // Set the content type as JSON
+        },
+        body: JSON.stringify({}), // You can send data in the request body if needed
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success) {
+          console.log('Email sent successfully');
+        } else {
+          console.error('Email sending failed');
+        }
+      } else {
+        console.error('Email sending failed');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+    }
+  };
 
   // Set the questionData to the default questions.questions data if there isn't any saved data in localStorage
   useEffect(() => {
@@ -66,6 +87,7 @@ export default function QrScannerHomePage() {
   function SetUserMail(user_mail){
     setIsMailColleted(true)
     localStorage.setItem(localStorageMailKey, user_mail);
+    handleSendEmail();
   }
 
   useEffect(() => {
@@ -114,6 +136,10 @@ export default function QrScannerHomePage() {
         temp.push(questionComponent)
       }
       setQuestionBlock(temp)
+      const allFound = questionData.every(obj => obj.hasOwnProperty('found') && obj.found === true);
+      if(allFound){
+        console.log('You found them all!!!')
+      }
     }
 
   }, [questionData]);
@@ -160,7 +186,7 @@ export default function QrScannerHomePage() {
 
         
         {isMailCollected? (
-            <div>Email is collected</div>
+            ''
           ) : (
             <MailCollector onSubmit={SetUserMail} />
           )

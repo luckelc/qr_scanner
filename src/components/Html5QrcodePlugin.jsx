@@ -5,6 +5,7 @@ import { Html5Qrcode } from 'html5-qrcode';
 import React, {useState, useEffect } from 'react';
 import {getQuestionArray} from '@/components/ContextProvider'
 const qrcodeRegionId = 'reader';
+const questionIdKey = 'qrScannerApp#'
 
 const Html5QrcodePlugin = ({removeScanner}) => {
     const [questionData, setQuestionData] = getQuestionArray();
@@ -32,7 +33,8 @@ const Html5QrcodePlugin = ({removeScanner}) => {
                     fps: 10,    // Optional, frame per seconds for qr code scanning
                 },
                 (decodedText, decodedResult) => {
-                    
+                    console.log(decodedText)
+                    /*
                     if (Array.isArray(questionData)) {
                         questionData.forEach(question => {
                             if(question.id == decodedText && question.found != true){
@@ -44,7 +46,7 @@ const Html5QrcodePlugin = ({removeScanner}) => {
                                 });
                             }
                         });
-                    }
+                    }*/
                 },
                 (errorMessage) => {
                     // parse error, ignore it.

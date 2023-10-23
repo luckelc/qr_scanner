@@ -4,11 +4,11 @@
   --upper-nav-height: 4em;
   --lower-nav-height: 10em;
   overflow: hidden;
+  background-color: #EBF5DF;
 }
 
 .main_nav{
   height: 4em;
-  background-color: aqua;
   display: flex;
   justify-content: space-between;
   padding: .5em 1.5em .5em 1.5em;
@@ -203,7 +203,6 @@
 .nav > .navGroup{
   height: 100%;
   width: 100%;
-  background-color: aqua;
 }
 
 .navGroup{
@@ -213,12 +212,13 @@
 }
 
 .navGroup .scan{
-  background-color: black;
+  background-color: #110101;
   border-radius: .5em;
   width: 80%;
   height: 2.5em;
   font-size: 40px;
   transition: .1s all;
+  border: none;
 }
 
 .scan:hover{
