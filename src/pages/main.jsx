@@ -81,7 +81,8 @@ export default function QrScannerHomePage() {
   useEffect(() => {
     const storedData = localStorage.getItem(localStorageMailKey);
     setIsMailColleted(storedData? storedData : false);
-    console.log('The mail is ' + isMailCollected);
+    if(isMailCollected)
+      console.log('The mail is ' + isMailCollected);
   }, []);
 
   function SetUserMail(user_mail){

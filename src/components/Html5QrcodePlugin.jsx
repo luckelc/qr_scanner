@@ -56,12 +56,14 @@ const Html5QrcodePlugin = ({removeScanner}) => {
                 });
 
                 document.getElementById('go_back').addEventListener("click", function() {
-                    html5QrCode.stop().then((ignore) => {
-                        removeScanner()
-
-                    }).catch((err) => {
-
-                    });
+                    if(html5QrCode.isScanning){
+                        html5QrCode.stop().then((ignore) => {
+                            removeScanner()
+    
+                        }).catch((err) => {
+    
+                        });
+                    }
                         
                 });
 
