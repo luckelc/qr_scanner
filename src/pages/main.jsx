@@ -9,6 +9,7 @@ import QuestionForm from '@/components/QuestionForm';
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, push, onValue, remove, get, child} from "firebase/database";
 import MailCollector from '@/components/MailCollector'
+import GiveUpForm from '@/components/GiveUpForm';
 
 // User_mail and firebase setup
 const firebaseConfig = {
@@ -46,11 +47,12 @@ const localStorageMailKey = 'user_mail'
 
 export default function QrScannerHomePage() {
   const [questionData, setQuestionData] = getQuestionArray();
+  const [selectedQuestionData, setSelectedQuestionData] = useState(null);
   const [isQuestionFormVisible, setQuestionFormVisibility] = useState(false);
   const [isScannerVisible, setIsScannerVisible] = useState(false);
-  const [selectedQuestionData, setSelectedQuestionData] = useState(null);
-  const [questionBlock, setQuestionBlock] = useState([]);
   const [isMailCollected, setIsMailColleted] = useState(false);
+  const [isGiveUpFormVisible, setGiveUpFormVisibility] = useState(false)
+  const [isAllQuestionsAnswered, setAllQuestionsAnswered] = useState(false)
 
   const handleSendEmail = async () => {
     try {
@@ -77,22 +79,33 @@ export default function QrScannerHomePage() {
     }
   };
 
-  // Set the questionData to the default questions.questions data if there isn't any saved data in localStorage
-  useEffect(() => {
-    const storedData = localStorage.getItem(localStorageMailKey);
-    setIsMailColleted(storedData? storedData : false);
-    if(isMailCollected)
-      console.log('The mail is ' + isMailCollected);
-  }, []);
-
   function SetUserMail(user_mail){
     setIsMailColleted(true)
     localStorage.setItem(localStorageMailKey, user_mail);
     handleSendEmail();
   }
 
+  const toggleQuestionFormVisibilityText = (selectedQuestion) => {
+    setQuestionFormVisibility(true);
+    setSelectedQuestionData(selectedQuestion); // Store the selected question data
+  };
+
+  const questionRows = questionData.map((question, index) => (
+    <QuestionRow
+    key={index}
+    onClick={toggleQuestionFormVisibilityText}
+    question={question}
+    />
+  ))
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
+      // Get the stored mail, if there is one.
+      const storedData = localStorage.getItem(localStorageMailKey);
+      setIsMailColleted(storedData && storedData);
+      if(isMailCollected)
+        console.log('The mail is ' + isMailCollected);
+
       // Fetch the mail data
       const fetchData = async () => {
         const user_data = await GetUserData();
@@ -124,35 +137,12 @@ export default function QrScannerHomePage() {
 
   useEffect(() => {
     if (questionData.length > 0) {
-      let temp = []
-      for (let i = 0; i < questionData.length; i++) {
-        const question = getQuestionHandler(i);
-        const questionComponent = (
-          <QuestionRow
-            key={question.id} // Don't forget to add a unique key
-            onClick={toggleQuestionFormVisibilityText}
-            question={question}
-          />
-        );
-        temp.push(questionComponent)
-      }
-      setQuestionBlock(temp)
       const allFound = questionData.every(obj => obj.hasOwnProperty('found') && obj.found === true);
       if(allFound){
         console.log('You found them all!!!')
       }
     }
-
   }, [questionData]);
-
-  function getQuestionHandler(questionIndex) {
-    return questionData[questionIndex]
-  }
-
-  const toggleQuestionFormVisibilityText = (selectedQuestion) => {
-    setQuestionFormVisibility(true);
-    setSelectedQuestionData(selectedQuestion); // Store the selected question data
-  };
 
   return (
     <>
@@ -178,17 +168,21 @@ export default function QrScannerHomePage() {
             <div></div>
           )}
 
-          <button className={styles.give_up}>
+          <button className={styles.give_up} onClick={() => setGiveUpFormVisibility(true)}>
             <svg height="800px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M6.96967 16.4697C6.67678 16.7626 6.67678 17.2374 6.96967 17.5303C7.26256 17.8232 7.73744 17.8232 8.03033 17.5303L6.96967 16.4697ZM13.0303 12.5303C13.3232 12.2374 13.3232 11.7626 13.0303 11.4697C12.7374 11.1768 12.2626 11.1768 11.9697 11.4697L13.0303 12.5303ZM11.9697 11.4697C11.6768 11.7626 11.6768 12.2374 11.9697 12.5303C12.2626 12.8232 12.7374 12.8232 13.0303 12.5303L11.9697 11.4697ZM18.0303 7.53033C18.3232 7.23744 18.3232 6.76256 18.0303 6.46967C17.7374 6.17678 17.2626 6.17678 16.9697 6.46967L18.0303 7.53033ZM13.0303 11.4697C12.7374 11.1768 12.2626 11.1768 11.9697 11.4697C11.6768 11.7626 11.6768 12.2374 11.9697 12.5303L13.0303 11.4697ZM16.9697 17.5303C17.2626 17.8232 17.7374 17.8232 18.0303 17.5303C18.3232 17.2374 18.3232 16.7626 18.0303 16.4697L16.9697 17.5303ZM11.9697 12.5303C12.2626 12.8232 12.7374 12.8232 13.0303 12.5303C13.3232 12.2374 13.3232 11.7626 13.0303 11.4697L11.9697 12.5303ZM8.03033 6.46967C7.73744 6.17678 7.26256 6.17678 6.96967 6.46967C6.67678 6.76256 6.67678 7.23744 6.96967 7.53033L8.03033 6.46967ZM8.03033 17.5303L13.0303 12.5303L11.9697 11.4697L6.96967 16.4697L8.03033 17.5303ZM13.0303 12.5303L18.0303 7.53033L16.9697 6.46967L11.9697 11.4697L13.0303 12.5303ZM11.9697 12.5303L16.9697 17.5303L18.0303 16.4697L13.0303 11.4697L11.9697 12.5303ZM13.0303 11.4697L8.03033 6.46967L6.96967 7.53033L11.9697 12.5303L13.0303 11.4697Z" fill="#FFFFFF"/>
             </svg>
           </button>
         </div>
-
         
-        {isMailCollected? (
-            ''
-          ) : (
+        {isGiveUpFormVisible &&  
+          (
+          <GiveUpForm canceled={() => setGiveUpFormVisibility(false)} proceeded={() => console.log('They gave up')}/>
+          )
+        }
+
+        {!isMailCollected && 
+          (
             <MailCollector onSubmit={SetUserMail} />
           )
         }
@@ -203,22 +197,30 @@ export default function QrScannerHomePage() {
           </div>
         ) : (
           <div className={styles.content}>
-            {isQuestionFormVisible? (<QuestionForm onExit={() => setQuestionFormVisibility(false)} question={selectedQuestionData}/>) : ''}
+            {isQuestionFormVisible && (<QuestionForm onExit={() => setQuestionFormVisibility(false)} question={selectedQuestionData}/>)}
             <div className={styles.temp}>
               <h1 className={styles.h1}>QR Scanning Code</h1>
 
               <ul>
-                {questionBlock}
+                {questionRows}
               </ul>
             </div>
 
             <div className={styles.nav}>
               <div className={styles.navGroup}>
-                <button onClick={setIsScannerVisible} className={styles.scan}>SCAN</button>
+
+                {isAllQuestionsAnswered? 
+                  <button onClick={setIsScannerVisible} className={styles.scan}>SCAN</button> 
+                  :
+                  // Change the class to its own, or create a general name that can be applied to both buttons
+                  <button onClick={() => console.log("You sent in your form")} className={styles.scan}>SEND IN</button> 
+                }
+
               </div>
             </div>
           </div>
         )}
+
       </div>
     </>
   )

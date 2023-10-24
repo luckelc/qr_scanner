@@ -34,7 +34,7 @@ const Html5QrcodePlugin = ({removeScanner}) => {
                 },
                 (decodedText, decodedResult) => {
                     console.log(decodedText)
-                    /*
+                    
                     if (Array.isArray(questionData)) {
                         questionData.forEach(question => {
                             if(question.id == decodedText && question.found != true){
@@ -46,7 +46,7 @@ const Html5QrcodePlugin = ({removeScanner}) => {
                                 });
                             }
                         });
-                    }*/
+                    }
                 },
                 (errorMessage) => {
                     // parse error, ignore it.
