@@ -1,85 +1,3 @@
-
-.main {
-  height: 100vh;
-  --upper-nav-height: 4em;
-  --lower-nav-height: 10em;
-  overflow: hidden;
-  background-color: #e6e6e6;
-}
-
-.main_nav{
-  height: 4em;
-  display: flex;
-  justify-content: space-between;
-  padding: .5em 1.5em .5em 1.5em;
-}
-
-.main_nav button{
-  width: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.main_nav button svg{
-  stroke: white;
-  fill: white;
-  pointer-events: none;
-  width: 5em;
-  height: 5em;
-}
-
-.main .content{
-  height: calc(100% - var(--upper-nav-height));
-  width: 100%;
-}
-
-.main .content .temp{
-  height: calc(100% - var(--lower-nav-height));
-  overflow-y: scroll;
-}
-
-.reader{
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  border: none !important;
-}
-
-.reader > div:nth-child(2){
-  height: calc(100vh - 6em);
-}
-
-.reader video{
-  height: 100% !important;
-  width: 100% !important;
-}
-
-.reader > div:nth-child(3) > div{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: rgb(65, 67, 85);
-  padding: 0 !important;
-  height: 6em;
-}
-
-.reader > div:nth-child(3) > div > div:nth-child(2){
-  display: none;
-}
-
-
-.reader button{
-  border-radius: 1em;
-  padding: 1em;
-  border: none;
-}
-
-.h1{
-  text-align: center;
-  margin-bottom: 1em;
-  color: rgb(34, 34, 34);
-}
-
 .question{
   width: 90%;
   list-style-type: none;
@@ -89,11 +7,14 @@
 }
 
 .questionButton.answered::after{
-  content: '';
-  padding: 1.15em;
+  content: url('../../public/external_design/check-mark-svgrepo-com.svg');
+  width: 1.5em;
+  height: 1.5em;
+  padding: .5em;
   position: absolute;
   left: -.5em;
   top: -.3em;
+  fill: white;
   background-color: #3c9e33;
   border-radius: 50%;
 }
@@ -208,36 +129,6 @@
   width: 100%;
   max-height: calc(100% - 2em);
   object-fit: contain;
-}
-
-.nav{
-  width: 100%;
-  height: var(--lower-nav-height);
-}
-
-.nav > .navGroup{
-  height: 100%;
-  width: 100%;
-}
-
-.navGroup{
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.navGroup .scan{
-  background-color: #3c9e33;
-  border-radius: .5em;
-  width: 80%;
-  height: 2.5em;
-  font-size: 40px;
-  transition: .1s all;
-  border: none;
-}
-
-.scan:hover{
-  transform: scale(1.05);
 }
 
 .QrScanner{

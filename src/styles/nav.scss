@@ -1,0 +1,22 @@
+.main_nav{
+    height: 4em;
+    display: flex;
+    justify-content: space-between;
+    padding: .5em 1.5em .5em 1.5em;
+
+    button{
+        
+        width: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg{
+            stroke: white;
+            fill: white;
+            pointer-events: none;
+            width: 5em;
+            height: 5em;
+          }
+    }
+}

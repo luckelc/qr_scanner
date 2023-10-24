@@ -1,13 +1,13 @@
 'use strict';
 import React, {useState, useEffect } from 'react';
 import Head from 'next/head'
-import styles from '@/styles/index.module.css'
+import styles from '@/styles/dist/qr_scanner.module.css'
 import QuestionRow from '@/components/QuestionRow';
 import Html5QrcodePlugin from '@/components/Html5QrcodePlugin';
 import { getQuestionArray } from '@/components/ContextProvider';
 import QuestionForm from '@/components/QuestionForm';
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, push, onValue, remove, get, child} from "firebase/database";
+import { getDatabase, ref, push, get} from "firebase/database";
 import MailCollector from '@/components/MailCollector'
 import GiveUpForm from '@/components/GiveUpForm';
 
@@ -24,6 +24,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = ref(getDatabase(app), "user_data")
+
 const userObject = {
   "mail": "person@testmail.com",
   "points": "2"
@@ -50,7 +51,7 @@ export default function QrScannerHomePage() {
   const [selectedQuestionData, setSelectedQuestionData] = useState(null);
   const [isQuestionFormVisible, setQuestionFormVisibility] = useState(false);
   const [isScannerVisible, setIsScannerVisible] = useState(false);
-  const [isMailCollected, setIsMailColleted] = useState(false);
+  const [isMailCollected, setIsMailColleted] = useState(true);
   const [isGiveUpFormVisible, setGiveUpFormVisibility] = useState(false)
   const [isAllQuestionsAnswered, setAllQuestionsAnswered] = useState(false)
 
@@ -138,9 +139,8 @@ export default function QrScannerHomePage() {
   useEffect(() => {
     if (questionData.length > 0) {
       const allFound = questionData.every(obj => obj.hasOwnProperty('found') && obj.found === true);
-      if(allFound){
+      if(allFound)
         console.log('You found them all!!!')
-      }
     }
   }, [questionData]);
 
@@ -157,13 +157,11 @@ export default function QrScannerHomePage() {
         <div className={styles.main_nav}>
 
           {isScannerVisible? (
-
             <button id='go_back' className={styles.go_back}>
               <svg height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5 12H19M5 12L11 6M5 12L11 18" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
-
           ) : (
             <div></div>
           )}
@@ -198,7 +196,7 @@ export default function QrScannerHomePage() {
         ) : (
           <div className={styles.content}>
             {isQuestionFormVisible && (<QuestionForm onExit={() => setQuestionFormVisibility(false)} question={selectedQuestionData}/>)}
-            <div className={styles.temp}>
+            <div className={styles.container}>
               <h1 className={styles.h1}>QR Scanning Code</h1>
 
               <ul>
@@ -210,10 +208,9 @@ export default function QrScannerHomePage() {
               <div className={styles.navGroup}>
 
                 {isAllQuestionsAnswered? 
-                  <button onClick={setIsScannerVisible} className={styles.scan}>SCAN</button> 
+                  <button onClick={setIsScannerVisible} className={styles.primary_button}>SCAN</button> 
                   :
-                  // Change the class to its own, or create a general name that can be applied to both buttons
-                  <button onClick={() => console.log("You sent in your form")} className={styles.scan}>SEND IN</button> 
+                  <button onClick={() => console.log("You sent in your form")} className={styles.primary_button}>SEND IN</button> 
                 }
 
               </div>

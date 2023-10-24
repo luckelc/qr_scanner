@@ -1,0 +1,85 @@
+.main_nav {
+  height: 4em;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em 1.5em 0.5em 1.5em;
+}
+.main_nav button {
+  width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main_nav button svg {
+  stroke: white;
+  fill: white;
+  pointer-events: none;
+  width: 5em;
+  height: 5em;
+}
+
+.reader {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: none !important;
+}
+.reader > div:nth-child(2) {
+  height: calc(100vh - 6em);
+}
+.reader > div:nth-child(3) > div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(65, 67, 85);
+  padding: 0 !important;
+  height: 6em;
+}
+.reader > div:nth-child(3) > div > div:nth-child(2) {
+  display: none;
+}
+.reader video {
+  height: 100% !important;
+  width: 100% !important;
+}
+.reader button {
+  border-radius: 1em;
+  padding: 1em;
+  border: none;
+}
+
+.main {
+  width: 100%;
+  height: 100vh;
+}
+.main .content {
+  height: calc(100% - 4em);
+  width: 100%;
+}
+.main .content > .container {
+  height: calc(100% - 10em);
+  overflow-y: scroll;
+}
+.main .content .nav {
+  width: 100%;
+  height: 10em;
+}
+.main .content .nav .navGroup {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
+}
+.main .content .nav .navGroup .primary_button {
+  background-color: #3c9e33;
+  border-radius: 0.5em;
+  width: 80%;
+  height: 2.5em;
+  font-size: 40px;
+  transition: 0.1s all;
+  border: none;
+}
+.main .content .nav .navGroup .primary_button:hover {
+  transform: scale(1.05);
+}
