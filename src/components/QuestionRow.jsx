@@ -1,4 +1,4 @@
-import styles from '@/styles/index.module.css'
+import styles from '@/styles/dist/question.module.css'
 import React from 'react';
 
 function QuestionRow({onClick, question}){

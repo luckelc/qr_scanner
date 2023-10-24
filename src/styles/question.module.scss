@@ -1,0 +1,59 @@
+.question{
+
+    width: 90%;
+    list-style-type: none;
+    margin: 0 auto;
+    margin-bottom: 1em;
+    position: relative;
+
+    .questionButton{
+        
+        width: 100%;
+        transition: all .25s;
+        border-radius: 15px;
+        height: 9em;
+        display: flex;
+        align-items: flex-start;
+        padding: 1.5em 1.75em 0em 1.75em;
+        background-color: rgb(236, 236, 239);
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.288);
+        border: none;
+
+        *{
+            pointer-events: none;
+        }
+
+        .info{
+
+            height: 100%;
+            flex: 13;
+            text-align: start;
+
+            h3{
+                font-size: 28px;
+                color: rgb(34, 34, 34);
+            }
+            p{
+                font-size: 18px;
+                color: rgb(34, 34, 34);
+            }
+        }
+    }
+
+    .questionButton.answered:hover{
+        transition: all .15s;
+        transform: scale(1.05);
+    }
+    .questionButton.answered::after{
+        content: url('/external_design/check-mark-svgrepo-com.svg');
+        width: 1.5em;
+        height: 1.5em;
+        padding: .5em;
+        position: absolute;
+        left: -.5em;
+        top: -.3em;
+        fill: white;
+        background-color: #3c9e33;
+        border-radius: 50%;
+    }
+}

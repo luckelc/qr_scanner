@@ -18,34 +18,47 @@
   height: 5em;
 }
 
-.reader {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  border: none !important;
-}
-.reader > div:nth-child(2) {
-  height: calc(100vh - 6em);
-}
-.reader > div:nth-child(3) > div {
+.giveUpForm {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.514);
+  z-index: 100;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  background-color: rgb(65, 67, 85);
-  padding: 0 !important;
-  height: 6em;
 }
-.reader > div:nth-child(3) > div > div:nth-child(2) {
-  display: none;
+.giveUpForm .card {
+  max-width: 650px;
+  padding: 1.5em;
+  position: relative;
+  z-index: 101;
+  width: 70%;
+  height: auto;
+  margin: 0 auto;
+  padding-bottom: 1em;
+  background-color: rgb(235, 235, 235);
+  border-radius: 15px;
+  overflow: hidden;
 }
-.reader video {
-  height: 100% !important;
-  width: 100% !important;
+.giveUpForm .card h2 {
+  color: black;
+  margin-bottom: 1em;
 }
-.reader button {
-  border-radius: 1em;
-  padding: 1em;
-  border: none;
+.giveUpForm .card ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+}
+.giveUpForm .card ul li {
+  margin-right: 2em;
+  margin-left: 2em;
+}
+.giveUpForm .card ul li button {
+  padding: 1em 3em 1em 3em;
 }
 
 .main {
@@ -56,7 +69,7 @@
   height: calc(100% - 4em);
   width: 100%;
 }
-.main .content > .container {
+.main .content .container {
   height: calc(100% - 10em);
   overflow-y: scroll;
 }

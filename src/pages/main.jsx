@@ -1,7 +1,7 @@
 'use strict';
 import React, {useState, useEffect } from 'react';
 import Head from 'next/head'
-import styles from '@/styles/dist/qr_scanner.module.css'
+import styles from '@/styles/dist/main.module.css'
 import QuestionRow from '@/components/QuestionRow';
 import Html5QrcodePlugin from '@/components/Html5QrcodePlugin';
 import { getQuestionArray } from '@/components/ContextProvider';
@@ -141,6 +141,7 @@ export default function QrScannerHomePage() {
       const allFound = questionData.every(obj => obj.hasOwnProperty('found') && obj.found === true);
       if(allFound)
         console.log('You found them all!!!')
+        setAllQuestionsAnswered(true)
     }
   }, [questionData]);
 

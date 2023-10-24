@@ -1,8 +1,7 @@
-import styles from '@/styles/index.module.css'
+import styles from '@/styles/dist/questionForm.module.css'
 import React, { useEffect, useState }  from 'react';
 import QuestionAnswer from '@/components/QuestionAnswer';
 import {getQuestionArray} from './ContextProvider';
-
 
 function QuestionForm({question, onExit}){
   const [questionData, setQuestionData] = getQuestionArray();

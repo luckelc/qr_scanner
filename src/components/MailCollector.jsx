@@ -1,4 +1,4 @@
-import styles from '@/styles/index.module.css'
+import styles from '@/styles/dist/mailForm.module.css'
 import React from 'react';
 
 function MailCollector({onSubmit}){

@@ -1,0 +1,87 @@
+.questionForm{
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.514);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .card{
+        max-width: 650px;
+        padding: .5em;
+        position: relative;
+        z-index: 101;
+        width: 70%;
+        height: auto;
+        margin: 0 auto;
+        padding-bottom: 1em;
+        background-color: rgb(235, 235, 235);
+        border-radius: 15px;
+        overflow: hidden;
+        $card-cover-height: 14em;
+
+        .cover{
+            width: 100%;
+            height: $card-cover-height;
+            overflow: hidden;
+
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                padding: .5em;
+                padding-bottom: .15em;
+            }
+        }
+
+        .info{
+            height: calc(100% - $card-cover-height);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            h2{
+                padding: .35em .15em .375em .15em;
+                color: black;
+            }
+            ul{
+                list-style-type: none;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+
+                li{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    button{
+                        transition: all .1s;
+                        min-width: 4em;
+                        height: 2em;
+                        padding: .25em;
+                        font-size: 20px;
+                        border: none;
+                    }
+                    button:hover{
+                        transform: scale(1.05);
+                    }
+                    .answer{
+                        display: block;
+                        margin: 0 auto;
+                        max-width: 20em;
+                        width: 90%;
+                        height: 3em;
+                        font-size: 18px;
+                    }
+                    .answer.selected{
+                        background-color: #3c9e33;
+                    }
+                }
+            }
+        }
+      }
+}

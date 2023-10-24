@@ -1,10 +1,10 @@
-import styles from '@/styles/index.module.css'
+import styles from '@/styles/dist/questionForm.module.css'
 import React from 'react';
 
 function QuestionAnswer({onClick, answerText, selected}){
   return (
     <li>
-      <button className={selected? (styles.answer.toString() + " " + styles.selected.toString()) : (styles.answer) } 
+      <button className={selected? `${styles.answer} ${styles.selected}` : styles.answer} 
        onClick={onClick}
       >
           {answerText}
