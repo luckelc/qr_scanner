@@ -23,7 +23,7 @@ export default function Html5QrcodePlugin({ exitScanner }) {
 				 * { id: "id", label: "label" }
 				 */
 				if (devices && devices.length) {
-					var cameraId = devices[0].id;
+					var cameraId = devices.find(device => device.label.toLowerCase().includes('back'))?.id || devices[0].id;
 					const html5QrCode = new Html5Qrcode("reader");
 					html5QrCode
 						.start(
