@@ -76,7 +76,8 @@ async function handleSendEmail() {
 
 export default function QrScannerHomePage() {
 	const contextValue = useContext(QuestionContext);
-	const questionData = contextValue !== undefined ? contextValue[0] : undefined;
+	const questionData =
+		contextValue !== undefined ? contextValue[0] : undefined;
 	const [selectedQuestionData, setSelectedQuestionData] = useState(null);
 	const [isQuestionFormVisible, setQuestionFormVisibility] = useState(false);
 	const [isScannerVisible, setIsScannerVisible] = useState(false);
@@ -135,8 +136,10 @@ export default function QrScannerHomePage() {
 			const allFound = questionData.every(
 				(obj) => obj.hasOwnProperty("found") && obj.found === true
 			);
-			if (allFound) console.log("You found them all!!!");
-			setAllQuestionsAnswered(true);
+			if (allFound) {
+				console.log("You found them all!!!");
+				setAllQuestionsAnswered(true);
+			}
 		}
 	}, [questionData]);
 
@@ -244,20 +247,20 @@ export default function QrScannerHomePage() {
 								{isAllQuestionsAnswered ? (
 									<button
 										onClick={() =>
-											setIsScannerVisible(true)
-										}
-										className={styles.primary_button}
-									>
-										SCAN
-									</button>
-								) : (
-									<button
-										onClick={() =>
 											console.log("You sent in your form")
 										}
 										className={styles.primary_button}
 									>
 										SEND IN
+									</button>
+								) : (
+									<button
+										onClick={() =>
+											setIsScannerVisible(true)
+										}
+										className={styles.primary_button}
+									>
+										SCAN
 									</button>
 								)}
 							</div>

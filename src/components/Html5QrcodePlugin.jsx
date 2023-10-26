@@ -32,7 +32,8 @@ export default function Html5QrcodePlugin({ exitScanner }) {
 								fps: 10, // Optional, frame per seconds for qr code scanning
 							},
 							(decodedText, decodedResult) => {
-								console.log(decodedText);
+								
+								// console.log(decodedText);
 
 								if (Array.isArray(questionData)) {
 									questionData.forEach((question) => {
