@@ -1,3 +1,5 @@
+@import 'colors.scss';
+
 .main_nav {
     height: 4em;
 	display: flex;
@@ -11,8 +13,8 @@
 		justify-content: center;
 
 		svg {
-			stroke: white;
-			fill: white;
+			stroke: $contrast-text-color;
+			fill: $contrast-text-color;
 			pointer-events: none;
 			width: 5em;
 			height: 5em;

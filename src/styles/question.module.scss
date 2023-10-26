@@ -1,3 +1,4 @@
+@import 'colors.scss';
 .question{
 
     width: 90%;
@@ -15,7 +16,7 @@
         display: flex;
         align-items: flex-start;
         padding: 1.5em 1.75em 0em 1.75em;
-        background-color: rgb(236, 236, 239);
+        background-color: $foreground-color;
         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.288);
         border: none;
 
@@ -31,11 +32,11 @@
 
             h3{
                 font-size: 28px;
-                color: rgb(34, 34, 34);
+                color: $default-text-color;
             }
             p{
                 font-size: 18px;
-                color: rgb(34, 34, 34);
+                color: $default-text-color;
             }
         }
     }
@@ -52,8 +53,8 @@
         position: absolute;
         left: -.5em;
         top: -.3em;
-        fill: white;
-        background-color: #3c9e33;
+        fill: $contrast-text-color;
+        background-color: $primary-color;
         border-radius: 50%;
     }
 }

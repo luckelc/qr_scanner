@@ -11,8 +11,8 @@
   justify-content: center;
 }
 .main_nav button svg {
-  stroke: white;
-  fill: white;
+  stroke: rgb(236, 236, 239);
+  fill: rgb(236, 236, 239);
   pointer-events: none;
   width: 5em;
   height: 5em;

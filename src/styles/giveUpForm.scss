@@ -1,3 +1,5 @@
+@import 'colors.scss';
+
 .giveUpForm {
 	position: fixed;
 	left: 0;
@@ -19,12 +21,12 @@
 		height: auto;
 		margin: 0 auto;
 		padding-bottom: 1em;
-		background-color: rgb(235, 235, 235);
+		background-color: $foreground-color;
 		border-radius: 15px;
 		overflow: hidden;
 
 		h2 {
-			color: black;
+			color: $default-text-color;
 			margin-bottom: 1em;
 		}
 
@@ -39,6 +41,7 @@
 				margin-left: 2em;
 
 				button {
+					color: $contrast-text-color;
 					padding: 1em 3em 1em 3em;
 				}
 

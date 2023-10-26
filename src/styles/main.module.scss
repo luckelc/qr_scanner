@@ -1,5 +1,7 @@
 @import 'nav.scss';
 @import 'giveUpForm.scss';
+@import 'colors.scss';
+
 
 .main{
     width: 100%;
@@ -29,7 +31,7 @@
                 width: 100%;
 
                 .primary_button{
-                    background-color: #3c9e33;
+                    background-color: $primary-color;
                     border-radius: .5em;
                     width: 80%;
                     height: 2.5em;
