@@ -45,7 +45,7 @@
         transform: scale(1.05);
     }
     .questionButton.answered::after{
-        content: url('external_design/check-mark-svgrepo-com.svg');
+        content: url('/public/external_design/check-mark-svgrepo-com.svg');
         width: 1.5em;
         height: 1.5em;
         padding: .5em;
