@@ -1,30 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
 import questions from "@/questions.json";
+import useLocalStorage from '@/components/LocalStorageHook'
 
-const QuestionContext = React.createContext();
+export const QuestionContext = React.createContext();
 
 export const localStorageKey = "questionsData";
 
-export function getQuestionArray() {
-	return useContext(QuestionContext);
-}
-
 export default function ContextProvider({ children }) {
-	const [questionData, setQuestionData] = useState(questions.questions);
-
-	// Set the questionData to the default questions.questions data if there isn't any saved data in localStorage
-	useEffect(() => {
-		const storedData = localStorage.getItem(localStorageKey);
-		const initialData = storedData
-			? JSON.parse(storedData)
-			: questions.questions;
-		setQuestionData(initialData);
-	}, []);
-
-	useEffect(() => {
-		localStorage.setItem(localStorageKey, JSON.stringify(questionData));
-		console.log(questionData);
-	}, [questionData]);
+	const [questionData, setQuestionData] = useLocalStorage(localStorageKey, questions.questions);
 
 	return (
 		<QuestionContext.Provider value={[questionData, setQuestionData]}>
