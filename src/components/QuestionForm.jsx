@@ -30,7 +30,7 @@ export default function QuestionForm({ question, onExit }) {
 			<div className={styles.card}>
 				<div className={styles.cover}>
 					<img
-						src={"/public/img/speaking.jpg"}
+						src={"qr_scanner/public/img/speaking.jpg"}
 						alt={"Image of " + question.name}
 					/>
 				</div>
