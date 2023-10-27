@@ -10,6 +10,7 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, push, get } from "firebase/database";
 import MailCollector from "@/components/MailCollector";
 import GiveUpForm from "@/components/GiveUpForm";
+import SubmitForm from "@/components/SubmitForm";
 
 // User_mail and firebase setup
 const firebaseConfig = {
@@ -88,14 +89,13 @@ async function handleSendEmail(userMail) {
 }
 
 export default function QrScannerHomePage() {
-	const contextValue = useContext(QuestionContext);
-	const questionData =
-		contextValue !== undefined ? contextValue[0] : undefined;
+	const [questionData, setQuestionData] = useContext(QuestionContext);
 	const [selectedQuestionData, setSelectedQuestionData] = useState(null);
 	const [isQuestionFormVisible, setQuestionFormVisibility] = useState(false);
 	const [isScannerVisible, setIsScannerVisible] = useState(false);
 	const [isMailCollected, setIsMailColleted] = useState(false);
 	const [isGiveUpFormVisible, setGiveUpFormVisibility] = useState(false);
+	const [isSubmitFormVisible, setSubmitFormVisibility] = useState(false);
 	const [isAllQuestionsAnswered, setAllQuestionsAnswered] = useState(false);
 
 	function toggleQuestionFormVisibilityText(selectedQuestion) {
@@ -115,9 +115,9 @@ export default function QrScannerHomePage() {
 		return false;
 	};
 
-	async function pushUserEntry(){
+	async function pushUserEntry(extraPoints){
 		const userMail = localStorage.getItem(localStorageMailKey)
-		let totalPoints = 0;
+		let totalPoints = 0 - extraPoints;
 		questionData.forEach(question => {
 			if(question.found && question.userInput === question.correctAnswer){
 				totalPoints += question.points;
@@ -143,6 +143,19 @@ export default function QrScannerHomePage() {
 
 	useEffect(() => {
 		if (typeof window !== "undefined") {
+			window.TurnAllFound = function() {
+				const updatedQuestions = questionData.map((q) => {
+					// Clone the question object to avoid direct mutation
+					return {
+						...q,
+						userInput: "",
+						found: true,
+					};
+				});
+				setQuestionData(updatedQuestions);
+				return true;
+			};
+
 			// Get the stored mail, if there is one.
 			const storedData = localStorage.getItem(localStorageMailKey);
 			setIsMailColleted(storedData);
@@ -227,6 +240,8 @@ export default function QrScannerHomePage() {
 
 				{!isMailCollected && <MailCollector onSubmit={SetUserMail} />}
 
+				{isSubmitFormVisible && <SubmitForm submissionPoints={(e) => {pushUserEntry(e); setSubmitFormVisibility(false);}}/>}
+
 				{isScannerVisible ? (
 					<div className={`${styles.scanner} ${styles.content}`}>
 						<Html5QrcodePlugin
@@ -265,11 +280,11 @@ export default function QrScannerHomePage() {
 								{isAllQuestionsAnswered ? (
 									<button
 										onClick={() =>
-											pushUserEntry()
+											setSubmitFormVisibility(true)
 										}
 										className={styles.primary_button}
 									>
-										SEND IN
+										CONTINUE
 									</button>
 								) : (
 									<button

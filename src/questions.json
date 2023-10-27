@@ -4,7 +4,7 @@
 			"id": "1",
 			"question": "Har Nösnäsgymnasiet en vacker havsutsikt?",
 			"name": "Fråga 1",
-			"description": "Inte hittad än.",
+			"description": "Spilt ketchup på tröjan.",
 			"answers": [
 				{
 					"text": "Ja"
@@ -20,14 +20,13 @@
 			"found": false,
 			"userInput": "",
 			"correctAnswer": "Ja",
-			"points" : 1,
-			"isHiddenQuestion" : false
+			"points" : 1
 		},
 		{
 			"id": "2",
 			"question": "Kan man läsa idrottsinriktning för både bordtennis, fotboll, handboll, basket, innebandy, ishockey och konståkning på Nösnäsgymnasiet?",
 			"name": "Fråga 2",
-			"description": "Inte hittad än.",
+			"description": "Skiner som solen.",
 			"answers": [
 				{
 					"text": "Ja"
@@ -43,14 +42,13 @@
 			"found": false,
 			"userInput": "",
 			"correctAnswer": "Ja",
-			"points" : 1,
-			"isHiddenQuestion" : false
+			"points" : 1
 		},
 		{
 			"id": "3",
 			"question": "Finns hela femton nationella program på Nösnäsgymnasiet?",
 			"name": "Fråga 3",
-			"description": "Inte hittad än.",
+			"description": "Skogens färg.",
 			"answers": [
 				{
 					"text": "Ja"
@@ -66,8 +64,29 @@
 			"found": false,
 			"userInput": "",
 			"correctAnswer": "Ja",
-			"points" : 1,
-			"isHiddenQuestion" : false
+			"points" : 1
+		},
+		{
+			"id": "4",
+			"question": "Blev Nösnäsgymnasiet årets UF-skola 2023?  ",
+			"name": "Fråga 4",
+			"description": "Svalt som havet",
+			"answers": [
+				{
+					"text": "Ja"
+				},
+				{
+					"text": "Nej"
+				}
+			],
+			"color": {
+				"rgba": [141, 205, 55, 1],
+				"hex": "#8DCD37"
+			},
+			"found": false,
+			"userInput": "",
+			"correctAnswer": "Ja",
+			"points" : 1
 		}
 	]
 }
