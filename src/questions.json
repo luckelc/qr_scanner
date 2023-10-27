@@ -2,15 +2,15 @@
 	"questions": [
 		{
 			"id": "1",
-			"question": "Question1",
-			"name": "Name1",
-			"description": "Description1",
+			"question": "Har Nösnäsgymnasiet en vacker havsutsikt?",
+			"name": "Fråga 1",
+			"description": "Inte hittad än.",
 			"answers": [
 				{
-					"text": "Yes"
+					"text": "Ja"
 				},
 				{
-					"text": "No"
+					"text": "Nej"
 				}
 			],
 			"color": {
@@ -19,20 +19,21 @@
 			},
 			"found": false,
 			"userInput": "",
+			"correctAnswer": "Ja",
 			"points" : 1,
 			"isHiddenQuestion" : false
 		},
 		{
 			"id": "2",
-			"question": "Question2",
-			"name": "Name2",
-			"description": "Description2",
+			"question": "Kan man läsa idrottsinriktning för både bordtennis, fotboll, handboll, basket, innebandy, ishockey och konståkning på Nösnäsgymnasiet?",
+			"name": "Fråga 2",
+			"description": "Inte hittad än.",
 			"answers": [
 				{
-					"text": "Answer1"
+					"text": "Ja"
 				},
 				{
-					"text": "Answer2"
+					"text": "Nej"
 				}
 			],
 			"color": {
@@ -41,20 +42,21 @@
 			},
 			"found": false,
 			"userInput": "",
+			"correctAnswer": "Ja",
 			"points" : 1,
 			"isHiddenQuestion" : false
 		},
 		{
 			"id": "3",
-			"question": "Question3",
-			"name": "Name3",
-			"description": "Description3",
+			"question": "Finns hela femton nationella program på Nösnäsgymnasiet?",
+			"name": "Fråga 3",
+			"description": "Inte hittad än.",
 			"answers": [
 				{
-					"text": "Yes"
+					"text": "Ja"
 				},
 				{
-					"text": "No"
+					"text": "Nej"
 				}
 			],
 			"color": {
@@ -63,6 +65,7 @@
 			},
 			"found": false,
 			"userInput": "",
+			"correctAnswer": "Ja",
 			"points" : 1,
 			"isHiddenQuestion" : false
 		}

@@ -69,7 +69,7 @@ async function handleSendEmail(userMail) {
 
 		if (response.ok) {
 			const data = await response.json();
-			
+
 			if (data.success) {
 				console.log("Email sent successfully");
 
@@ -119,7 +119,7 @@ export default function QrScannerHomePage() {
 		const userMail = localStorage.getItem(localStorageMailKey)
 		let totalPoints = 0;
 		questionData.forEach(question => {
-			if(question.found){
+			if(question.found && question.userInput === question.correctAnswer){
 				totalPoints += question.points;
 			}
 		});
