@@ -18,7 +18,9 @@
 				"hex": "#098EE7"
 			},
 			"found": false,
-			"userInput": ""
+			"userInput": "",
+			"points" : 1,
+			"isHiddenQuestion" : false
 		},
 		{
 			"id": "2",
@@ -38,7 +40,9 @@
 				"hex": "#FF0054"
 			},
 			"found": false,
-			"userInput": ""
+			"userInput": "",
+			"points" : 1,
+			"isHiddenQuestion" : false
 		},
 		{
 			"id": "3",
@@ -58,7 +62,9 @@
 				"hex": "#8DCD37"
 			},
 			"found": false,
-			"userInput": ""
+			"userInput": "",
+			"points" : 1,
+			"isHiddenQuestion" : false
 		}
 	]
 }

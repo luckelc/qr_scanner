@@ -30,6 +30,14 @@ const userObject = {
 	mail: "person@testmail.com",
 	points: "2",
 };
+
+function createUserEntry(userMail, userPoints){
+	return {
+		mail: userMail,
+		points: userPoints
+	}
+}
+
 async function GetUserData() {
 	try {
 		const snapshot = await get(db);
@@ -49,25 +57,29 @@ async function GetUserData() {
 }
 const localStorageMailKey = "user_mail";
 
-async function handleSendEmail() {
+async function handleSendEmail(userMail) {
 	try {
 		const response = await fetch("/api/sendEmail", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json", // Set the content type as JSON
 			},
-			body: JSON.stringify({}), // You can send data in the request body if needed
+			body: JSON.stringify({content: userMail}), // You can send data in the request body if needed
 		});
 
 		if (response.ok) {
 			const data = await response.json();
 			if (data.success) {
 				console.log("Email sent successfully");
+
+				alert("Email sent successfully");
 			} else {
 				console.error("Email sending failed");
+				alert("Email sending failed");
 			}
 		} else {
 			console.error("Email sending failed");
+			alert("Email sending failed");
 		}
 	} catch (error) {
 		console.error("Error sending email:", error);
@@ -81,53 +93,59 @@ export default function QrScannerHomePage() {
 	const [selectedQuestionData, setSelectedQuestionData] = useState(null);
 	const [isQuestionFormVisible, setQuestionFormVisibility] = useState(false);
 	const [isScannerVisible, setIsScannerVisible] = useState(false);
-	const [isMailCollected, setIsMailColleted] = useState(true);
+	const [isMailCollected, setIsMailColleted] = useState(false);
 	const [isGiveUpFormVisible, setGiveUpFormVisibility] = useState(false);
 	const [isAllQuestionsAnswered, setAllQuestionsAnswered] = useState(false);
-
-	function SetUserMail(user_mail) {
-		setIsMailColleted(true);
-		localStorage.setItem(localStorageMailKey, user_mail);
-		handleSendEmail();
-	}
 
 	function toggleQuestionFormVisibilityText(selectedQuestion) {
 		setQuestionFormVisibility(true);
 		setSelectedQuestionData(selectedQuestion); // Store the selected question data
 	}
 
+	const checkUserEntry = async (userMail) => {
+		const user_data = await GetUserData();
+		if (user_data) {
+			for (const userData of user_data) {
+				if (userMail === userData.value.mail) {
+					return true;
+				}
+			}
+		}
+		return false;
+	};
+
+	async function pushUserEntry(){
+		const userMail = localStorage.getItem(localStorageMailKey)
+		let totalPoints = 0;
+		questionData.forEach(question => {
+			if(question.found){
+				totalPoints += question.points;
+			}
+		});
+		if(await checkUserEntry(userMail)){
+
+		}else{
+			push(db, createUserEntry(userMail, totalPoints));
+		}
+		handleSendEmail(userMail);
+		console.log("You sent in your form")
+	}
+
+	async function SetUserMail(userMail) {
+		if(await checkUserEntry(userMail)){
+			console.log('There is already a key with that email');
+		}else{
+			setIsMailColleted(userMail);
+			localStorage.setItem(localStorageMailKey, userMail);
+		}
+	}
+
 	useEffect(() => {
 		if (typeof window !== "undefined") {
 			// Get the stored mail, if there is one.
 			const storedData = localStorage.getItem(localStorageMailKey);
-			setIsMailColleted(storedData && storedData);
+			setIsMailColleted(storedData);
 			if (isMailCollected) console.log("The mail is " + isMailCollected);
-
-			// Fetch the mail data
-			const fetchData = async () => {
-				const user_data = await GetUserData();
-				if (user_data) {
-					let keyFound = false; // Initialize a flag
-					for (const userData of user_data) {
-						if (userObject.mail === userData.value.mail) {
-							keyFound = true;
-							break; // Exit the loop when a matching key is found
-						}
-					}
-					if (keyFound) {
-						console.log("There is already a key with that value");
-						console.log(user_data);
-					} else {
-						push(db, userObject);
-						console.log("Pushed a key");
-					}
-				} else {
-					// No user_data indicates that the array isn't there, in that case you could still push it up.
-					push(db, userObject);
-					console.log("Pushed a key");
-				}
-			};
-			fetchData();
 		}
 	}, []);
 
@@ -246,7 +264,7 @@ export default function QrScannerHomePage() {
 								{isAllQuestionsAnswered ? (
 									<button
 										onClick={() =>
-											console.log("You sent in your form")
+											pushUserEntry()
 										}
 										className={styles.primary_button}
 									>
