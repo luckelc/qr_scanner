@@ -69,6 +69,7 @@ async function handleSendEmail(userMail) {
 
 		if (response.ok) {
 			const data = await response.json();
+			
 			if (data.success) {
 				console.log("Email sent successfully");
 

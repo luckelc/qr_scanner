@@ -33,7 +33,7 @@ export default function Html5QrcodePlugin({ exitScanner }) {
 							},
 							(decodedText, decodedResult) => {
 								
-								// console.log(decodedText);
+								console.log(decodedText);
 
 								if (Array.isArray(questionData)) {
 									questionData.forEach((question) => {
