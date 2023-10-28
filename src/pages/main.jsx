@@ -84,7 +84,9 @@ async function handleSendEmail(userMail) {
 }
 
 export default function QrScannerHomePage() {
-	const [questionData, setQuestionData] = useContext(QuestionContext);
+	const contextValue = useContext(QuestionContext);
+	const questionData = contextValue !== undefined ? contextValue[0] : undefined;
+	const setQuestionData = contextValue !== undefined ? contextValue[1] : undefined;
 	const [selectedQuestionData, setSelectedQuestionData] = useState(null);
 	const [isQuestionFormVisible, setQuestionFormVisibility] = useState(false);
 	const [isScannerVisible, setIsScannerVisible] = useState(false);
