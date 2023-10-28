@@ -40,6 +40,13 @@
   height: 2.5em;
   width: 100%;
   font-size: 18px;
+  color: rgb(236, 236, 239);
+  background-color: #3c9e33;
+  border: none;
+}
+.submitForm .card form input {
+  height: 2em;
+  width: 100%;
 }
 .submitForm .card form * {
   margin-top: 0.5em;

@@ -1,0 +1,26 @@
+.finishScreen {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.finishScreen .card {
+  max-width: 350px;
+  padding: 1.5em;
+  position: relative;
+  z-index: 101;
+  height: auto;
+  margin: 0 auto;
+  padding-bottom: 1em;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.finishScreen .card h2 {
+  color: rgb(34, 34, 34);
+  margin-bottom: 1em;
+}

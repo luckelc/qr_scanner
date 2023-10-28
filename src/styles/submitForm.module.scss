@@ -43,7 +43,14 @@
 				height: 2.5em;
 				width: 100%;
 				font-size: 18px;
+				color: $contrast-text-color;
+				background-color: $primary-color;
+				border: none;
 			}
+			input{
+				height: 2em;
+				width: 100%
+			};
 			*{
 				margin-top: .5em;
 			}

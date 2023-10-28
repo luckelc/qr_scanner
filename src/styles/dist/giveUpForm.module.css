@@ -30,14 +30,16 @@
 .giveUpForm .card ul {
   display: flex;
   list-style-type: none;
-  justify-content: center;
   align-items: center;
+  justify-content: space-around;
 }
 .giveUpForm .card ul li {
-  margin-right: 2em;
-  margin-left: 2em;
+  max-width: 45%;
+  width: 8em;
+  height: 3em;
 }
 .giveUpForm .card ul li button {
   color: rgb(236, 236, 239);
-  padding: 1em 3em 1em 3em;
+  height: 100%;
+  width: 100%;
 }
