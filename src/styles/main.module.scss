@@ -1,5 +1,3 @@
-@import 'nav.scss';
-@import 'giveUpForm.scss';
 @import 'colors.scss';
 
 
@@ -8,8 +6,69 @@
     width: 100vw;
     height: 100vh;
 
+    .main_nav {
+        height: 4em;
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5em 1.5em 0.5em 1.5em;
+        background-color: $foreground-color;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.288);
+    
+        button {
+            width: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+    
+            svg {
+                stroke: $contrast-text-color;
+                fill: $contrast-text-color;
+                pointer-events: none;
+                width: 5em;
+                height: 5em;
+            }
+        }
+    }
+    
+    .scanner {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border: none !important;
+    
+        > div:nth-child(2) {
+            height: calc(100vh - 6em);
+        }
+    
+        > div:nth-child(3) > div {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: rgb(65, 67, 85);
+            padding: 0 !important;
+            height: 6em;
+    
+            > div:nth-child(2) {
+                display: none;
+            }
+        }
+    
+        video {
+            height: 100% !important;
+            width: 100% !important;
+            object-fit: cover;
+        }
+    
+        button {
+            border-radius: 1em;
+            padding: 1em;
+            border: none;
+        }
+    }
+    
     .content{
 
+        padding-top: 2em;
         height: calc(100% - 4em);
         width: 100%;
 

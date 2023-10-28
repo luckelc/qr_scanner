@@ -4,38 +4,38 @@ import nodemailer from "nodemailer";
 // This is your Next.js API route handler
 export default async function handler(req, res) {
 	const htmlContent = `
-  <!DOCTYPE html>
-  <html>
-  <head>
-      <style>
-          body {
-              font-family: Arial, sans-serif;
-          }
-          .container {
-              width: 80%;
-              margin: auto;
-              padding: 20px;
-              border: 1px solid #ddd;
-              border-radius: 5px;
-          }
-          .header {
-              text-align: left;
-              color: #333;
-          }
-          .message {
-              margin-top: 20px;
-              color: #666;
-          }
-      </style>
-  </head>
-  <body>
-      <div class="container">
-          <h1 class="header">Submission Accepted</h1>
-          <p class="message">Thank you for your submission. It has been accepted and is currently under review.</p>
-          <p class="message">If you are selected as the winner, we will contact you again. Please keep an eye on your inbox.</p>
-      </div>
-  </body>
-  </html>`;
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+			}
+			.container {
+				width: 80%;
+				margin: auto;
+				padding: 20px;
+				border: 1px solid #ddd;
+				border-radius: 5px;
+			}
+			.header {
+				text-align: left;
+				color: #333;
+			}
+			.message {
+				margin-top: 20px;
+				color: #666;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1 class="header">Submission Accepted</h1>
+			<p class="message">Thank you for your submission. It has been accepted and is currently under review.</p>
+			<p class="message">If you are selected as the winner, we will contact you again. Please keep an eye on your inbox.</p>
+		</div>
+	</body>
+	</html>`;
 
 	// Check if the method is POST
 	if (req.method === "POST") {
@@ -54,7 +54,7 @@ export default async function handler(req, res) {
 			to: req.body.content,
 			subject: "Poängjakt bekräftelse",
 			// text: "Wow, that was simple!",
-      html: htmlContent
+			html: htmlContent,
 		};
 
 		console.log(mailOptions);

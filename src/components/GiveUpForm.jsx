@@ -1,4 +1,4 @@
-import styles from "@/styles/dist/main.module.css";
+import styles from "@/styles/dist/giveUpForm.module.css";
 import React from "react";
 
 export default function GiveUpForm({ canceled, proceeded }) {

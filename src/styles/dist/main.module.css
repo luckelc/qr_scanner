@@ -1,73 +1,62 @@
-.main_nav {
+.main {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+.main .main_nav {
   height: 4em;
   display: flex;
   justify-content: space-between;
   padding: 0.5em 1.5em 0.5em 1.5em;
+  background-color: rgb(236, 236, 239);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.288);
 }
-.main_nav button {
+.main .main_nav button {
   width: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.main_nav button svg {
+.main .main_nav button svg {
   stroke: rgb(236, 236, 239);
   fill: rgb(236, 236, 239);
   pointer-events: none;
   width: 5em;
   height: 5em;
 }
-
-.giveUpForm {
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 0.514);
-  z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.giveUpForm .card {
-  max-width: 650px;
-  padding: 1.5em;
-  position: relative;
-  z-index: 101;
-  width: 70%;
-  height: auto;
-  margin: 0 auto;
-  padding-bottom: 1em;
-  background-color: rgb(236, 236, 239);
-  border-radius: 15px;
+.main .scanner {
+  width: 100%;
+  height: 100%;
   overflow: hidden;
+  border: none !important;
 }
-.giveUpForm .card h2 {
-  color: rgb(34, 34, 34);
-  margin-bottom: 1em;
+.main .scanner > div:nth-child(2) {
+  height: calc(100vh - 6em);
 }
-.giveUpForm .card ul {
+.main .scanner > div:nth-child(3) > div {
   display: flex;
-  list-style-type: none;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  background-color: rgb(65, 67, 85);
+  padding: 0 !important;
+  height: 6em;
 }
-.giveUpForm .card ul li {
-  margin-right: 2em;
-  margin-left: 2em;
+.main .scanner > div:nth-child(3) > div > div:nth-child(2) {
+  display: none;
 }
-.giveUpForm .card ul li button {
-  color: rgb(236, 236, 239);
-  padding: 1em 3em 1em 3em;
+.main .scanner video {
+  height: 100% !important;
+  width: 100% !important;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
-
-.main {
-  overflow: hidden;
-  width: 100vw;
-  height: 100vh;
+.main .scanner button {
+  border-radius: 1em;
+  padding: 1em;
+  border: none;
 }
 .main .content {
+  padding-top: 2em;
   height: calc(100% - 4em);
   width: 100%;
 }

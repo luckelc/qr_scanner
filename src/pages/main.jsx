@@ -27,11 +27,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = ref(getDatabase(app), "user_data");
 
-const userObject = {
-	mail: "person@testmail.com",
-	points: "2",
-};
-
 function createUserEntry(userMail, userPoints){
 	return {
 		mail: userMail,
@@ -66,7 +61,7 @@ async function handleSendEmail(userMail) {
 				"Content-Type": "application/json", // Set the content type as JSON
 			},
 			body: JSON.stringify({content: userMail}), // You can send data in the request body if needed
-		});
+		});	
 
 		if (response.ok) {
 			const data = await response.json();
@@ -129,6 +124,7 @@ export default function QrScannerHomePage() {
 			push(db, createUserEntry(userMail, totalPoints));
 		}
 		handleSendEmail(userMail);
+		console.log(totalPoints);
 		console.log("You sent in your form")
 	}
 
@@ -234,7 +230,7 @@ export default function QrScannerHomePage() {
 				{isGiveUpFormVisible && (
 					<GiveUpForm
 						canceled={() => setGiveUpFormVisibility(false)}
-						proceeded={() => console.log("They gave up")}
+						proceeded={() => setSubmitFormVisibility(true)}
 					/>
 				)}
 

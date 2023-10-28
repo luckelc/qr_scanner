@@ -18,10 +18,10 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        max-width: 650px;
         padding: .5em;
         z-index: 110;
-        width: 70%;
+        max-width: 350px;
+        width: 100%;
         height: auto;
         margin: 0 auto;
         padding-bottom: 1em;
@@ -36,10 +36,24 @@
             max-width: 250px;
             width: 100%;
 
+            label{
+				color: $default-text-color;
+				font-size: 19px;
+			}
+
             input{
                 margin-top: 1em;
                 width: 100%;
+                height: 2em;
             }
+			button {
+				height: 2.5em;
+				width: 100%;
+				font-size: 18px;
+			}
+			*{
+				margin-top: .5em;
+			}
         }
     }
 }

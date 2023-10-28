@@ -100,7 +100,6 @@ export default function Html5QrcodePlugin({ exitScanner }) {
 				id={qrcodeRegionId}
 				style={{
 					height: "100%",
-					backgroundColor: "blue",
 					display: "flex",
 					flexDirection: "column",
 					justifyContent: "center",
