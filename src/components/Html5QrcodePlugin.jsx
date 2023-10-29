@@ -32,33 +32,36 @@ export default function Html5QrcodePlugin({ exitScanner }) {
 								fps: 10, // Optional, frame per seconds for qr code scanning
 							},
 							(decodedText, decodedResult) => {
-								
-								console.log(decodedText);
 
-								if (Array.isArray(questionData)) {
-									questionData.forEach((question) => {
-										if (
-											question.id == decodedText &&
-											question.found != true
-										) {
-											html5QrCode
-												.stop()
-												.then((ignore) => {
-													setSelectedQuestionData(
-														question
-													);
-													setQuestionFormVisibility(
-														true
-													);
-												})
-												.catch((err) => {
-													console.error(
-														"Something went wrong, please rescan the qrcode"
-													);
-												});
-										}
-									});
+								if(decodedText.includes(questionIdKey)){
+									let result = decodedText.split(questionIdKey)[1];
+
+									if (Array.isArray(questionData)) {
+										questionData.forEach((question) => {
+											if (
+												question.id == result &&
+												question.found != true
+											) {
+												html5QrCode
+													.stop()
+													.then((ignore) => {
+														setSelectedQuestionData(
+															question
+														);
+														setQuestionFormVisibility(
+															true
+														);
+													})
+													.catch((err) => {
+														console.error(
+															"Something went wrong, please rescan the qrcode"
+														);
+													});
+											}
+										});
+									}
 								}
+
 							},
 							(errorMessage) => {
 								// parse error, ignore it.
