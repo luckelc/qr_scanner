@@ -145,6 +145,7 @@ export default function QrScannerHomePage() {
 
 	async function SetUserMail(userMail) {
 		if (await checkUserEntry(userMail)) {
+			alert("Ett bidrag har redan skickats in med detta mail, vänligen välj ett annat.");
 			console.log("There is already a key with that email");
 		} else {
 			setIsMailColleted(userMail);
