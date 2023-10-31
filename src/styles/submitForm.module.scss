@@ -6,14 +6,14 @@
 	top: 0;
 	height: 100vh;
 	width: 100vw;
-	background-color: rgba(0, 0, 0, 0.514);
+	background-color: $fade-background-color;
 	z-index: 100;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 
 	.card {
-		max-width: 750px;
+		max-width: 350px;
 		padding: 1.5em;
 		position: relative;
 		z-index: 101;
@@ -25,9 +25,14 @@
 		border-radius: 15px;
 		overflow: hidden;
 
+		h1{
+			margin-bottom: .65em;
+		}
+
 		h2 {
 			color: $default-text-color;
-			margin-bottom: .5em;
+			margin-bottom: .4em;
+			font-size: 20px;
 		}
 
 		form {
@@ -38,6 +43,7 @@
 			label{
 				color: $default-text-color;
 				font-size: 19px;
+				margin: 0;
 			}
 			.submit_form{
 				height: 2.5em;
@@ -46,10 +52,12 @@
 				color: $contrast-text-color;
 				background-color: $primary-color;
 				border: none;
+				border-radius: 10px;
 			}
 			input{
 				height: 2em;
-				width: 100%
+				width: 100%;
+				text-align: center
 			};
 			*{
 				margin-top: .5em;

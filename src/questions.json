@@ -20,7 +20,7 @@
 			"found": false,
 			"userInput": "",
 			"correctAnswer": "Ja",
-			"points" : 1
+			"points" : 1000
 		},
 		{
 			"id": "2",
@@ -42,7 +42,7 @@
 			"found": false,
 			"userInput": "",
 			"correctAnswer": "Ja",
-			"points" : 1
+			"points" : 1000
 		},
 		{
 			"id": "3",
@@ -64,7 +64,7 @@
 			"found": false,
 			"userInput": "",
 			"correctAnswer": "Ja",
-			"points" : 1
+			"points" : 1000
 		},
 		{
 			"id": "4",
@@ -86,7 +86,7 @@
 			"found": false,
 			"userInput": "",
 			"correctAnswer": "Ja",
-			"points" : 1
+			"points" : 1000
 		}
 	]
 }

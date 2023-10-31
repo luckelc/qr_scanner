@@ -68,7 +68,6 @@ export default function Html5QrcodePlugin({ exitScanner }) {
 							}
 						)
 						.catch((err) => {
-							// Start failed, handle it.
 						});
 
 					document
@@ -86,7 +85,7 @@ export default function Html5QrcodePlugin({ exitScanner }) {
 				}
 			})
 			.catch((err) => {
-				// handle err
+				alert('Webbsidan behöver tillgång till kamera för att fungera, ladda om sidan och försök igen.')
 			});
 	}, []);
 

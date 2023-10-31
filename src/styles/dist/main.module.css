@@ -47,8 +47,7 @@
 .main .scanner video {
   height: 100% !important;
   width: 100% !important;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .main .scanner button {
   border-radius: 1em;
@@ -62,7 +61,8 @@
 }
 .main .content .container {
   height: calc(100% - 10em);
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .main .content .nav {
   width: 100%;

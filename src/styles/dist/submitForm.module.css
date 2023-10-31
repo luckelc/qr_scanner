@@ -4,14 +4,14 @@
   top: 0;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(0, 0, 0, 0.514);
+  background-color: rgba(0, 0, 0, 0.815);
   z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .submitForm .card {
-  max-width: 750px;
+  max-width: 350px;
   padding: 1.5em;
   position: relative;
   z-index: 101;
@@ -23,9 +23,13 @@
   border-radius: 15px;
   overflow: hidden;
 }
+.submitForm .card h1 {
+  margin-bottom: 0.65em;
+}
 .submitForm .card h2 {
   color: rgb(34, 34, 34);
-  margin-bottom: 0.5em;
+  margin-bottom: 0.4em;
+  font-size: 20px;
 }
 .submitForm .card form {
   display: flex;
@@ -35,6 +39,7 @@
 .submitForm .card form label {
   color: rgb(34, 34, 34);
   font-size: 19px;
+  margin: 0;
 }
 .submitForm .card form .submit_form {
   height: 2.5em;
@@ -43,10 +48,12 @@
   color: rgb(236, 236, 239);
   background-color: #3c9e33;
   border: none;
+  border-radius: 10px;
 }
 .submitForm .card form input {
   height: 2em;
   width: 100%;
+  text-align: center;
 }
 .submitForm .card form * {
   margin-top: 0.5em;

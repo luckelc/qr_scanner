@@ -4,7 +4,7 @@
   top: 0;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(0, 0, 0, 0.514);
+  background-color: rgba(0, 0, 0, 0.815);
   z-index: 100;
   display: flex;
   justify-content: center;
@@ -31,8 +31,7 @@
 .questionForm .card .cover img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   padding: 0.5em;
   padding-bottom: 0.15em;
 }

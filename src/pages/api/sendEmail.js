@@ -39,6 +39,32 @@ export default async function handler(req, res) {
 
 	// Check if the method is POST
 	if (req.method === "POST") {
+
+		const transportMail = 'qrcodescorehunt@zohomail.eu';
+		const transportPass = '@#8RVUX$X6:>UuZ';
+
+
+		var transporter = nodemailer.createTransport({
+			host: 'smtp.zoho.eu', // Use 'smtp.zoho.com' for US
+			port: 465,
+			secure: true, // use SSL
+			auth: {
+			  user: transportMail, // your Zoho email
+			  pass: transportPass // your Zoho password
+			}
+		});
+		  
+		var mailOptions = {
+			from: {
+				name: 'Poängjakt bekräftelse',
+				address: transportMail
+			},
+			to: req.body.content,
+			subject: "Poängjakt bekräftelse",
+			html: htmlContent,
+		};
+
+		/* HOTMAIL TRANSPORT
 		// Create a Nodemailer transporter
 		const transporter = nodemailer.createTransport({
 			service: "hotmail",
@@ -47,7 +73,9 @@ export default async function handler(req, res) {
 				pass: "zPt54N69d8SuwVL",
 			},
 		});
+		*/
 
+		/* HOTMAIL CONFIG
 		// Define your mail options
 		const mailOptions = {
 			from: "QrCodeScoreHunt@outlook.com",
@@ -56,8 +84,7 @@ export default async function handler(req, res) {
 			// text: "Wow, that was simple!",
 			html: htmlContent,
 		};
-
-		console.log(mailOptions);
+		*/
 
 		// Try to send the email
 		try {
