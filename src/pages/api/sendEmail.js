@@ -30,9 +30,9 @@ export default async function handler(req, res) {
 	</head>
 	<body>
 		<div class="container">
-			<h1 class="header">Submission Accepted</h1>
-			<p class="message">Thank you for your submission. It has been accepted and is currently under review.</p>
-			<p class="message">If you are selected as the winner, we will contact you again. Please keep an eye on your inbox.</p>
+			<h1 class="header">Inlämning Accepterad</h1>
+			<p class="message">Tack för din inlämning. Den har accepterats och är för närvarande under granskning.</p>
+			<p class="message">Om du väljs som vinnare kommer vi att kontakta dig igen. Var vänlig och håll ett öga på din inkorg.</p>
 		</div>
 	</body>
 	</html>`;
