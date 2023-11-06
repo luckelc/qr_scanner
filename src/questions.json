@@ -2,31 +2,9 @@
 	"questions": [
 		{
 			"id": "1",
-			"question": "Har Nösnäsgymnasiet en vacker havsutsikt?",
-			"name": "Fråga 1",
-			"description": "Spilt ketchup på tröjan.",
-			"answers": [
-				{
-					"text": "Ja"
-				},
-				{
-					"text": "Nej"
-				}
-			],
-			"color": {
-				"rgba": [9, 142, 231, 1],
-				"hex": "#098EE7"
-			},
-			"found": false,
-			"userInput": "",
-			"correctAnswer": "Ja",
-			"points" : 1000
-		},
-		{
-			"id": "2",
 			"question": "Kan man läsa idrottsinriktning för både bordtennis, fotboll, handboll, basket, innebandy, ishockey och konståkning på Nösnäsgymnasiet?",
-			"name": "Fråga 2",
-			"description": "Skiner som solen.",
+			"name": "Fråga 1",
+			"description": "Hitta den gröna koden.",
 			"answers": [
 				{
 					"text": "Ja"
@@ -45,10 +23,10 @@
 			"points" : 1000
 		},
 		{
-			"id": "3",
+			"id": "2",
 			"question": "Finns hela femton nationella program på Nösnäsgymnasiet?",
-			"name": "Fråga 3",
-			"description": "Skogens färg.",
+			"name": "Fråga 2",
+			"description": "Hitta den orangefärgade koden.",
 			"answers": [
 				{
 					"text": "Ja"
@@ -67,10 +45,10 @@
 			"points" : 1000
 		},
 		{
-			"id": "4",
-			"question": "Blev Nösnäsgymnasiet årets UF-skola 2023?  ",
-			"name": "Fråga 4",
-			"description": "Svalt som havet",
+			"id": "3",
+			"question": "Blev Nösnäsgymnasiet årets UF-skola 2023?",
+			"name": "Fråga 3",
+			"description": "Hitta den rosa koden.",
 			"answers": [
 				{
 					"text": "Ja"

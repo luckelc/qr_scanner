@@ -22,12 +22,19 @@
         z-index: 110;
         max-width: 350px;
         width: 100%;
-        height: auto;
-        margin: 0 auto;
         padding-bottom: 1em;
         background-color: $foreground-color;
         border-radius: 15px;
         overflow: hidden;
+
+        .logo{
+            width: 100%;
+            background-color: black;
+            img{
+                
+            }
+        }
+        
 
         form{
 

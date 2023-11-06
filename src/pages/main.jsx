@@ -324,7 +324,7 @@ export default function QrScannerHomePage() {
 													styles.primary_button
 												}
 											>
-												CONTINUE
+												FORTSÄTT
 											</button>
 										) : (
 											<button
@@ -335,7 +335,7 @@ export default function QrScannerHomePage() {
 													styles.primary_button
 												}
 											>
-												SCAN
+												SKANNA QR KOD
 											</button>
 										)}
 									</div>

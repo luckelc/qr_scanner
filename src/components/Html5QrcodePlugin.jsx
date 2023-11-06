@@ -32,7 +32,7 @@ export default function Html5QrcodePlugin({ exitScanner }) {
 								fps: 10, // Optional, frame per seconds for qr code scanning
 							},
 							(decodedText, decodedResult) => {
-
+								
 								if(decodedText.includes(questionIdKey)){
 									let result = decodedText.split(questionIdKey)[1];
 
