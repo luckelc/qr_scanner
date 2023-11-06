@@ -235,8 +235,9 @@ export default function QrScannerHomePage() {
 								onClick={() => setGiveUpFormVisibility(true)}
 							>
 								<svg
-									height="800px"
 									viewBox="0 -0.5 25 25"
+									width="30px"
+									height="30px"
 									fill="none"
 									xmlns="http://www.w3.org/2000/svg"
 								>
