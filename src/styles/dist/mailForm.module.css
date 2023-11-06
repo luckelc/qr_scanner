@@ -11,25 +11,6 @@
   align-items: center;
   flex-direction: column;
 }
-.mailForm .about {
-  background-color: rgb(236, 236, 239);
-  padding: 1em 2em 1em 2em;
-  color: rgb(34, 34, 34);
-  width: 80%;
-  margin-top: 2em;
-  border-radius: 15px;
-  max-width: 300px;
-  width: 100%;
-}
-.mailForm .about p {
-  margin-bottom: 1em;
-}
-.mailForm .about p:last-of-type {
-  margin-bottom: 0em;
-}
-.mailForm .about span {
-  text-decoration: underline;
-}
 .mailForm .card {
   display: flex;
   align-items: center;
@@ -43,6 +24,24 @@
   background-color: rgb(236, 236, 239);
   border-radius: 15px;
   overflow: hidden;
+}
+.mailForm .card .about {
+  padding: 0em 0.5em 0em 0.5em;
+  color: rgb(34, 34, 34);
+  width: 80%;
+  margin-top: 1em;
+  margin-bottom: 0.25em;
+  max-width: 250px;
+  width: 100%;
+}
+.mailForm .card .about p {
+  margin-bottom: 1em;
+}
+.mailForm .card .about p:last-of-type {
+  margin-bottom: 0em;
+}
+.mailForm .card .about span {
+  text-decoration: underline;
 }
 .mailForm .card .logo {
   width: 100%;
