@@ -20,10 +20,9 @@ export default function MailCollector({ onSubmit }) {
 			<div className={styles.card}>
 				<div className={styles.logo}>
 					<img src="/external_design/nosnas_logo.svg" alt="" />
+					<h2>NÖSNÄS</h2>
 				</div>
-				<div>
-					<p>Den här appen har utvecklats av en elev.</p>
-				</div>
+				
 				<form>
 					<label htmlFor="mail_form">Skriv in ditt mail för att fortsätta:</label>
 					<input type="email" name="User mail" id="mail_form" />
@@ -36,6 +35,10 @@ export default function MailCollector({ onSubmit }) {
 					</button>
 				</form>
 			</div>
+			<div className={styles.about}>
+					<p>Den här appen har utvecklats av <span>en elev.</span></p>
+					<p>Vi värdesätter din integritet. I enlighet med GDPR lagrar vi inte personlig information. Vi använder endast nödvändiga cookies för att förbättra din upplevelse på vår webbplats.</p>
+				</div>
 		</div>
 	);
 }
