@@ -14,7 +14,6 @@
 				}
 			],
 			"color": {
-				"rgba": [255, 0, 84, 1],
 				"hex": "#FF0054"
 			},
 			"found": false,
@@ -36,7 +35,6 @@
 				}
 			],
 			"color": {
-				"rgba": [141, 205, 55, 1],
 				"hex": "#8DCD37"
 			},
 			"found": false,
@@ -58,7 +56,27 @@
 				}
 			],
 			"color": {
-				"rgba": [141, 205, 55, 1],
+				"hex": "#8DCD37"
+			},
+			"found": false,
+			"userInput": "",
+			"correctAnswer": "Ja",
+			"points" : 1000
+		},
+		{
+			"id": "4",
+			"question": "Har Nösnäs en fin havsutsikt?",
+			"name": "Fråga 4",
+			"description": "Hitta den blåa koden.",
+			"answers": [
+				{
+					"text": "Ja"
+				},
+				{
+					"text": "Nej"
+				}
+			],
+			"color": {
 				"hex": "#8DCD37"
 			},
 			"found": false,

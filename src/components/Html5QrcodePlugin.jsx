@@ -14,14 +14,23 @@ export default function Html5QrcodePlugin({ exitScanner }) {
 	const [selectedQuestionData, setSelectedQuestionData] = useState(null);
 
 	useEffect(() => {
-		console.log(questionData);
+		questionData.forEach((question) => {
+			if (
+				question.id == 4 &&
+				question.found != true
+			) {
+				setSelectedQuestionData(
+					question
+				);
+				setQuestionFormVisibility(
+					true
+				);
+			}
+		});
+		/*
 		// This method will trigger user permissions
 		Html5Qrcode.getCameras()
 			.then((devices) => {
-				/*
-				 * devices would be an array of objects of type:
-				 * { id: "id", label: "label" }
-				 */
 				if (devices && devices.length) {
 					var cameraId = devices.find(device => device.label.toLowerCase().includes('back'))?.id || devices[0].id;
 					const html5QrCode = new Html5Qrcode("reader");
@@ -87,6 +96,7 @@ export default function Html5QrcodePlugin({ exitScanner }) {
 			.catch((err) => {
 				alert('Webbsidan behöver tillgång till kamera för att fungera, ladda om sidan och försök igen.')
 			});
+		*/
 	}, []);
 
 	return (
