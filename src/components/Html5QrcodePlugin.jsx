@@ -14,20 +14,7 @@ export default function Html5QrcodePlugin({ exitScanner }) {
 	const [selectedQuestionData, setSelectedQuestionData] = useState(null);
 
 	useEffect(() => {
-		questionData.forEach((question) => {
-			if (
-				question.id == 4 &&
-				question.found != true
-			) {
-				setSelectedQuestionData(
-					question
-				);
-				setQuestionFormVisibility(
-					true
-				);
-			}
-		});
-		/*
+		
 		// This method will trigger user permissions
 		Html5Qrcode.getCameras()
 			.then((devices) => {
@@ -96,7 +83,7 @@ export default function Html5QrcodePlugin({ exitScanner }) {
 			.catch((err) => {
 				alert('Webbsidan behöver tillgång till kamera för att fungera, ladda om sidan och försök igen.')
 			});
-		*/
+		
 	}, []);
 
 	return (

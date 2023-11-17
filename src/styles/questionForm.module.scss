@@ -85,13 +85,14 @@
 						background-color: $primary-color;
 					}
 					.answer.selected::before {
+						z-index: 1;
 						content: url('../../../public/external_design/check-mark-svgrepo-com.svg');
 						transform: scale(0.65);
 						width: 1.5em;
 						height: 1.5em;
 						padding: 0.5em;
 						position: absolute;
-						right: -1.25em;
+						right: -.75em;
 						top: -1em;
 						fill: $contrast-text-color;
 						background-color: $primary-color;
